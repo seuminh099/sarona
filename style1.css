@@ -1,0 +1,56 @@
+
+.brand-logo
+{
+	background-color:#708090;
+}
+.metismenu
+{
+	background-color:#708090;
+}
+menu
+{
+	background-color:#708090;
+}
+.lbl{
+	padding: 5px 20px 5px 20px;
+	border-radius: 5px;
+}
+#display
+{
+	display: block;
+	width: 80px;
+	margin: 5px ;
+	border-radius: 5%;
+	border: 1px solid black;
+}
+.img,#imgcat,#displaystaff,#displaycus,#displaypro,#displaysub
+{
+	display: block;
+	width: 80px;
+	margin: 5px ;
+	border-radius: 5%;
+	border: 1px solid black;
+}
+.form
+{
+	background-color: #dcdde1;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px 5px ; 
+}
+
+.item{
+	float: left;
+	background: #ffffff;
+	padding: 5px;
+	margin: 10px 0px 0px 0px;
+	border-radius: 5px;
+	border: #E0E0E0 1px solid;
+}
+.name,.qty{
+	border-radius: 5px ;
+	margin-bottom: 5px;
+
+}
+.aa{
+	margin-left: 20px;
+}

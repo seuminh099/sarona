@@ -40,7 +40,7 @@ require_once('../inc/restrict.php');
 <body>
 
     <!--*******************
-        Preloader start
+        Preloader start....
     ********************-->
     <?php include('../preloader.php');  ?>
     <!--*******************

@@ -30,7 +30,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="../pro_form/productformshow.php">Product</a></li>
-                            <li><a href="../category_form/categoryform.php">Categories</a></li>
+                            <li><a href="../cate_form/categoryform.php">Categories</a></li>
                             <li><a href="../model_form/modelform.php">Medel</a></li>
                             <li><a href="#">In Stock</a></li>
                             <li><a href="#">Puchase</a></li>

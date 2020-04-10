@@ -28,7 +28,7 @@
                            <i class="fab fa-product-hunt " ></i><span class="nav-text" >Product</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="product_form/productformshow.php">Product</a></li>
+                            <li><a href="pro_form/productformshow.php">Product</a></li>
                             <li><a href="category_form/categoryform.php">Categories</a></li>
                             <li><a href="model_form/modelform.php">Medel</a></li>
                             <li><a href="#">In Stock</a></li>

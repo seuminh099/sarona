@@ -1,26 +1,10 @@
 
 <?php
 //import class.php
-	require_once('../inc/class.php');
+	require_once('inc/class.php');
 //instant object
     $obj = new mycodes;
-    //Test Update Button
-        if(isset($_REQUEST['btn_update'])){
-            $memberid = strtolower(trim($_REQUEST['txt_MemberID']));
-            $membertype = strtolower(trim($_REQUEST['txt_Membertype']));
-            $discount = $_REQUEST['txt_discount'];
-            $result = $obj->fun_checkData("tblmember","MemberType","MemberID",$membertype,$memberid);
-             if($result){
-                echo "<h2>Cannot Update</h2>";
-            }else{
-                $tblname = "tblmember";
-                $fields = array("MemberType","Discount");
-                $values = array($membertype,$discount);
-                $obj->fun_updatedata($tblname,$fields,$values,"MemberID",$memberid);
-                header('location:memberform.php');  
-           } 
-        }
-
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,8 +17,8 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="36x36" href="images/bdsmall.png">
     <!-- Custom Stylesheet -->
-    <link href="../css/style.css" rel="stylesheet">
-    <link href="../style1.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="style1.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 <!--<link rel="stylesheet" type="text/css" href=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
@@ -42,6 +26,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
 
 </head>
 
@@ -50,7 +38,7 @@
     <!--*******************
         Preloader start
     ********************-->
-    <?php include('../preloader.php');  ?>
+    <?php include('preloader.php');  ?>
     <!--*******************
         Preloader end
     ********************-->
@@ -64,7 +52,7 @@
         <!--**********************************
             Nav header start
         ***********************************-->
-        <?php include('../nav-header.php'); ?>
+        <?php include('nav-header.php'); ?>
         <!--**********************************
             Nav header end
         ***********************************-->
@@ -73,7 +61,7 @@
         <!--**********************************
             Header start
         ***********************************-->
-        <?php include('../headerstart.php'); ?>
+        <?php include('headerstart.php'); ?>
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -82,7 +70,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-       <?php include('../sidebarforsub.php'); ?>
+       <?php include('sidebar.php'); ?>
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -105,9 +93,77 @@
             <!-- row -->
             <div class="container-fluid" id="load-products">
                 <!-- This is for code -->
-                    <h3 ><center>List of Categories</center></h3>
+                    <h3 ><center>List of Members</center></h3>
     			<!-- <a href="categoryaddform.php">Add New Category</a> -->
-                <!-- In data Table -->                                   
+                <!-- In data Table -->    
+        <?php         
+            //test button addnew
+                if(isset($_REQUEST['btn_addnew'])){
+                                $membertype = $_REQUEST['txtmembertype'];
+                                $discount = $_REQUEST['txtdisc'];
+                                $result = $obj->fun_checkExistingData($membertype,"tblmember","MemberType");
+                                if($result){
+                                    ?>
+                          <!-- Alert Error -->
+                            <script type="text/javascript">toastr.error('<?php echo $membertype ?> Existing Members')</script>
+                <?php
+                                }else{
+                                    $tblname = "tblmember";
+                                    $fields = array("MemberType","Discount");
+                                    $values = array($membertype,$discount);
+                                    $obj->fun_insertdata($tblname,$fields,$values);
+                                  
+                                      ?>
+                            <!-- Alert Success -->
+                                <script type="text/javascript">toastr.success('Model has been added')</script>
+                        <?php 
+                                }
+                            }
+        //Test Delete Button
+        if(isset($_REQUEST['MemberID'])){
+            $key_memberid = $_REQUEST['MemberID'];
+            $count = $obj->fun_count("tblcustomer","MemberID",$key_memberid);
+            if ($count == 0){
+                $row = $obj->fun_lookup("tblmember","MemberID",$key_memberid);
+            $table = "tblmember";
+            //Access to methoad fundeletedata and fundeleteimage
+            $fields = array("IsDelete");
+            $values = array("1");
+            $obj->fun_updatedata($table,$fields,$values,"MemberID",$key_memberid);
+            ?>
+                            <!-- Alert Success -->
+                                <script type="text/javascript">toastr.success('Delete successfully')</script>
+                        <?php 
+        }else{
+            ?>
+                          <!-- Alert Error -->
+                            <script type="text/javascript">toastr.error('Cannot Delete')</script>
+                <?php
+        }
+        }
+    //Test Update Button
+        if(isset($_REQUEST['btn_update'])){
+            $memberid = strtolower(trim($_REQUEST['txt_MemberID']));
+            $membertype = strtolower(trim($_REQUEST['txt_Membertype']));
+            $discount = $_REQUEST['txt_discount'];
+            $result = $obj->fun_checkData("tblmember","MemberType","MemberID",$membertype,$memberid);
+             if($result){
+                ?>
+                          <!-- Alert Error -->
+                            <script type="text/javascript">toastr.error('Cannot Update')</script>
+                <?php
+            }else{
+                $tblname = "tblmember";
+                $fields = array("MemberType","Discount");
+                $values = array($membertype,$discount);
+                $obj->fun_updatedata($tblname,$fields,$values,"MemberID",$memberid);
+                 ?>
+                            <!-- Alert Success -->
+                                <script type="text/javascript">toastr.success('Update successfully')</script>
+                        <?php 
+           } 
+        }
+            ?>              
                 <form method="post" action="" enctype="multipart/form-data">
                     <!-- <table id="example" class="table table-striped table-bordered" style="width:100%" > -->
                 	<table cellpadding="5px" cellspacing="0" align="center" border="1px" class="table table-hover font-weight-bolder">
@@ -139,7 +195,7 @@
                                     </button>
                                 </td>
                 				<td>
-                                    <a href="member_delete.php?MemberID=<?php echo $memberid;?>" 
+                                    <a href="memberform.php?MemberID=<?php echo $memberid;?>" 
                                            class="btn btn-danger delete" id="delete">Delete</a>
                                 </td>
                 			</tr>
@@ -219,7 +275,7 @@
         <!--**********************************
             Footer start
         ***********************************-->
-        <?php include('../footer.php'); ?>
+        <?php include('footer.php'); ?>
         <!--**********************************
             Footer end
         ***********************************-->
@@ -231,16 +287,16 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="../plugins/common/common.min.js"></script>
-    <script src="../js/custom.min.js"></script>
-    <script src="../js/settings.js"></script>
-    <script src="../js/gleek.js"></script>
-    <script src="../js/styleSwitcher.js"></script>
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
 
 
 
-    <script src="../test.js"></script>
-    <script src="../script.js"></script>
+    <script src="test.js"></script>
+    <script src="script.js"></script>
 
 
     <script>

@@ -25,6 +25,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- Alert Script -->
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 
 </head>
 
@@ -90,7 +94,44 @@
                 <!-- This is for code -->
                     <h3 ><center>Restore Model</center></h3>
     			<!-- <a href="categoryaddform.php">Add New Category</a> -->
-                <!-- In data Table -->                                   
+                <!-- In data Table -->       
+                <?php
+
+                                //Test key delted
+                    if(isset($_REQUEST['MoID'])){
+                        $key_modelid = $_REQUEST['MoID'];
+                        //count product
+                        $countproduct = $obj->fun_count("tblproduct","ModelID",$key_modelid);
+                        //ber sern jea in category nus ot mean product oy lub ban
+                        if($countproduct == 0){
+                            $row = $obj->fun_lookup("tblmodel","ModelID",$key_modelid);
+                            $table = "tblmodel";
+                            $fieldid = "ModelID";
+                                $obj->fun_deletedata($table,$fieldid,$key_modelid);
+                            ?>
+                            <!-- Alert Success -->
+                                <script type="text/javascript">toastr.success('Deleted successfully')</script>
+                        <?php 
+                        }else{
+                            ?>
+                          <!-- Alert Error -->
+                            <script type="text/javascript">toastr.error('You cannot delete this model becouse have product')</script>
+                <?php
+                        }
+                    }
+                            //test key restore
+                if (isset($_REQUEST['ModelID'])) {
+                    $modelid = $_REQUEST['ModelID'];
+                        $table = "tblmodel";
+                        $fields = array("IsDelete");
+                        $values = array("0");
+                        $obj->fun_updatedata($table,$fields,$values,"ModelID",$modelid); 
+                        ?>
+                            <!-- Alert Success -->
+                                <script type="text/javascript">toastr.success('Restore successfully')</script>
+                        <?php    
+                }
+    ?>                            
                 <form method="post" action="" enctype="multipart/form-data">
 
                     <!-- <table id="example" class="table table-striped table-bordered" style="width:100%" > -->
@@ -119,12 +160,12 @@
                                 <td><?php echo $desc; ?></td>
                 				<td>
 
-                                    <a href="modelrestorecode.php?ModelID=<?php echo $modelid;?>" 
+                                    <a href="modelformRestore.php?ModelID=<?php echo $modelid;?>" 
                                            class="btn btn-primary delete" id="delete">Restore</a>
 
                                 </td>
                 				<td>
-                                    <a href="modeldeleterestore.php?ModelID=<?php echo $modelid;?>" 
+                                    <a href="modelformRestore.php?MoID=<?php echo $modelid;?>" 
                                            class="btn btn-danger delete" id="delete">Delete</a>
                                 </td>
                                 <td>

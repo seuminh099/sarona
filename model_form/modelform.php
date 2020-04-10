@@ -27,11 +27,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-
-     <!-- Alert Script -->
+    <!-- Alert Script -->
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+
+
 </head>
 
 <body>
@@ -96,70 +97,76 @@
                 <!-- This is for code -->
                     <h3 ><center>List of Model</center></h3>
     			<!-- <a href="categoryaddform.php">Add New Category</a> -->
-
-    <?php
-                /* ------------------------------- Test Add New Button --------------------------- */
-                if(isset($_REQUEST['btn_addnew'])){
-                    $modelname = $_REQUEST['txtmodelname'];
-                    $desc = $_REQUEST['txtdesc'];
-                    $result = $obj->fun_checkExistingData($modelname,"tblmodel","ModelName");
-                    if($result){
-                ?>
-                        <script type="text/javascript">toastr.error('<?php echo $modelname ?> Existing.......')</script>
+                <!-- In data Table -->  
                 <?php
-                    }else{
-                        $tblname = "tblmodel";
-                        $fields = array("ModelName","Description");
-                        $values = array($modelname,$desc);
-                        $obj->fun_insertdata($tblname,$fields,$values);
-                ?>
-                        <script type="text/javascript">toastr.success('Model has been added')</script>
+                //Test Add Button
+    if(isset($_REQUEST['btn_addnew'])){
+        $modelname = $_REQUEST['txtmodelname'];
+        $desc = $_REQUEST['txtdesc'];
+        $result = $obj->fun_checkExistingData($modelname,"tblmodel","ModelName");
+        if($result){
+       
+            ?>
+                          <!-- Alert Error -->
+                            <script type="text/javascript">toastr.error('You cannot addnew model')</script>
                 <?php
-                   } 
-                }
-                /*-------------------------------- Test Delete Button ---------------------------- */
-                if(isset($_REQUEST['ModelID'])){
-                    $key_moid = $_REQUEST['ModelID'];
-                    $countproduct = $obj->fun_count("tblproduct","ModelID",$key_moid);
-                    if ($countproduct == 0){
-                        $row = $obj->fun_lookup("tblmodel","ModelID",$key_moid);
-                        $table = "tblmodel";
-                        //Access to methoad fundeletedata and fundeleteimage
-                        $fields = array("IsDelete");
-                        $values = array("1");
-                        $obj->fun_updatedata($table,$fields,$values,"ModelID",$key_moid);
-                ?>
-                        <script type="text/javascript">toastr.success('Model Delete successfully')</script>
+        }else{
+            $tblname = "tblmodel";
+            $fields = array("ModelName","Description");
+            $values = array($modelname,$desc);
+            $obj->fun_insertdata($tblname,$fields,$values);
+            ?>
+                            <!-- Alert Success -->
+                                <script type="text/javascript">toastr.success('Model successfully added')</script>
+                        <?php  
+       } 
+    }
+                //Test key delete
+	if(isset($_REQUEST['ModelID'])){
+		$key_moid = $_REQUEST['ModelID'];
+		$countproduct = $obj->fun_count("tblproduct","ModelID",$key_moid);
+		if ($countproduct == 0){
+			$row = $obj->fun_lookup("tblmodel","ModelID",$key_moid);
+			$table = "tblmodel";
+			//Access to methoad fundeletedata and fundeleteimage
+	        $fields = array("IsDelete");
+	        $values = array("1");
+	        $obj->fun_updatedata($table,$fields,$values,"ModelID",$key_moid);
+	        ?>
+                            <!-- Alert Success -->
+                                <script type="text/javascript">toastr.success('Deleted successfully')</script>
+                        <?php 
+		}else{
+			?>
+                          <!-- Alert Error -->
+                            <script type="text/javascript">toastr.error('You cannot delete this model becouse have product')</script>
                 <?php
-                    }else{
+			
+			}	
+	}
+    //test button update model
+    if (isset($_REQUEST['btn_update'])) {
+        $modelid=$_REQUEST['txtmodelid'];
+        $modelname=$_REQUEST['txtmodelname'];
+        $des=$_REQUEST['txtdesc'];
+        $result = $obj->fun_checkData("tblmodel","ModelName","ModelID",$modelname,$modelid);
+             if($result){
                 ?>
-                             <script type="text/javascript">toastr.error('Can not Delete model because have product')</script>
+                          <!-- Alert Error -->
+                            <script type="text/javascript">toastr.error('Cannot Update')</script>
                 <?php
-                        }   
-                }
-                /*-------------------------------- Test Update Button ----------------------------- */
-                if (isset($_REQUEST['btn_update'])) {
-                    $modelid=$_REQUEST['txtmodelid'];
-                    $modelname=$_REQUEST['txtmodelname'];
-                    $des=$_REQUEST['txtdesc'];
-                    $result = $obj->fun_checkData("tblmodel","ModelName","ModelID",$modelname,$modelid);
-                         if($result){
-     ?>
-                           <script type="text/javascript">toastr.error('Can not Update model')</script>
-    <?php
-                        }else{
-                            $table="tblmodel";
-                            $field=array("ModelName","Description");
-                            $value=array($modelname,$des);
-                            $obj->fun_updatedata($table,$field,$value,"ModelID", $modelid);
-                    ?>
-
-                             <script type="text/javascript">toastr.success('Model Update successfully')</script>
-    <?php
-                        }
-                }
-    ?>
-                <!-- In data Table -->                                   
+            }else{
+                $table="tblmodel";
+                $field=array("ModelName","Description");
+                $value=array($modelname,$des);
+                $obj->fun_updatedata($table,$field,$value,"ModelID", $modelid);
+                ?>
+                            <!-- Alert Success -->
+                                <script type="text/javascript">toastr.success('Update successfully')</script>
+                        <?php 
+            }
+    }
+?>                                 
                 <form method="post" action="" enctype="multipart/form-data">
 
                     <!-- <table id="example" class="table table-striped table-bordered" style="width:100%" > -->

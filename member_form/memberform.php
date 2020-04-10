@@ -1,7 +1,7 @@
 
 <?php
 //import class.php
-	require_once('inc/class.php');
+	require_once('../inc/class.php');
 //instant object
     $obj = new mycodes;
     
@@ -17,9 +17,9 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="36x36" href="images/bdsmall.png">
     <!-- Custom Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="style1.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../style1.css" rel="stylesheet">
+    <link rel="../stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 <!--<link rel="stylesheet" type="text/css" href=" https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"> -->
@@ -38,7 +38,7 @@
     <!--*******************
         Preloader start
     ********************-->
-    <?php include('preloader.php');  ?>
+    <?php include('../preloader.php');  ?>
     <!--*******************
         Preloader end
     ********************-->
@@ -52,7 +52,7 @@
         <!--**********************************
             Nav header start
         ***********************************-->
-        <?php include('nav-header.php'); ?>
+        <?php include('../nav-header.php'); ?>
         <!--**********************************
             Nav header end
         ***********************************-->
@@ -61,7 +61,7 @@
         <!--**********************************
             Header start
         ***********************************-->
-        <?php include('headerstart.php'); ?>
+        <?php include('../headerstart.php'); ?>
         <!--**********************************
             Header end ti-comment-alt
         ***********************************-->
@@ -70,7 +70,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-       <?php include('sidebar.php'); ?>
+       <?php include('../sidebarforsub.php'); ?>
         <!--**********************************
             Sidebar end
         ***********************************-->
@@ -287,16 +287,16 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <script src="plugins/common/common.min.js"></script>
-    <script src="js/custom.min.js"></script>
-    <script src="js/settings.js"></script>
-    <script src="js/gleek.js"></script>
-    <script src="js/styleSwitcher.js"></script>
+    <script src="../plugins/common/common.min.js"></script>
+    <script src="../js/custom.min.js"></script>
+    <script src="../js/settings.js"></script>
+    <script src="../js/gleek.js"></script>
+    <script src="../js/styleSwitcher.js"></script>
 
 
 
-    <script src="test.js"></script>
-    <script src="script.js"></script>
+    <script src="../test.js"></script>
+    <script src="../script.js"></script>
 
 
     <script>

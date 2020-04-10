@@ -42,7 +42,7 @@
                            <i class="fas fa-layer-group" ></i><span class="nav-text" >Categroy</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="categoryform.php">Category</a></li>
+                            <li><a href="cate_form/categoryform.php">Category</a></li>
                         </ul>
                     </li>
                 

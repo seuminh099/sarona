@@ -19,7 +19,7 @@
                         </ul>
                     </li>
                     <li >
-                        <a  href="supplierform.php" aria-expanded="false">
+                        <a  href="supplierform/supplierform.php" aria-expanded="false">
                            <i class="fas fa-users"></i><span class="nav-text" >Supplier</span>
                         </a>
                     </li>

@@ -1,8 +1,12 @@
 
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 session_start();
 //import class.php.php
+=======
+//import class.php
+>>>>>>> 91b89f16e900c19a3dd489fe766acd6804a27ea5
 =======
 //import class.php
 >>>>>>> 91b89f16e900c19a3dd489fe766acd6804a27ea5

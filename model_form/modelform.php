@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-//import class.php
+//import class.php kaka
 	require_once('../inc/class.php');
 //instant object
     $obj = new mycodes;

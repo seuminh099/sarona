@@ -19,7 +19,7 @@
                       <div class="
                       up">
                         <label for="" class="col-form-label font-weight-bold text-dark">Discount</label>
-                        <input type="text" name="txtdisc" placeholder="Description" class="form-control" required />
+                        <input type="text" name="txtdisc" placeholder="Discount" class="form-control" required />
                       </div>
                       
                        <div class="modal-footer">

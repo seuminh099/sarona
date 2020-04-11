@@ -1,6 +1,6 @@
 
 <?php
-//import class.php
+//import class.php//////////////////////////////////////
 	require_once('../inc/class.php');
 //instant object
     $obj = new mycodes;

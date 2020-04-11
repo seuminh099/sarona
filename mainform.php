@@ -3,20 +3,7 @@
     require_once('inc/class.php');
 //instant object
     $obj = new mycodes;
-
-    if(!empty($_GET["action"])) {
-        switch ($_GET["action"]) {
-            case "add":
-               
-
-                break;
-
-            case "remove":
-               
-
-                break;
-        }
-    }
+require_once('../inc/restrict.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

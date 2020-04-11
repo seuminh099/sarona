@@ -4,7 +4,7 @@
 	require_once('../inc/class.php');
 //instant object
     $obj = new mycodes;
-
+require_once('../inc/restrict.php');
     
 ?>
 <!DOCTYPE html>

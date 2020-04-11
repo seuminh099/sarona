@@ -92,16 +92,16 @@
             <!-- row -->
             <div class="container-fluid" id="load-products">
                 <!-- This is for code -->
-                    <h3 ><center>Restore Member</center></h3>
+                    <h3 ><center>Restore Model</center></h3>
     			<!-- <a href="categoryaddform.php">Add New Category</a> -->
                 <!-- In data Table -->       
                 <?php
 
-                    //Test key delete
+                    //Test key delted
                     if(isset($_REQUEST['MeID'])){
                         $key_memberid = $_REQUEST['MeID'];
                         //count customer
-                        $countcustomer = $obj->fun_count("tblcustomer","MemberID",$key_memberid);
+                        $countcustomer = $obj->fun_count("tblcustomer","CustomerID",$key_memberid);
                         //ber sern jea in member nus ot mean customer oy lub ban
                         if($countcustomer == 0){
                             $row = $obj->fun_lookup("tblmember","MemberID",$key_memberid);
@@ -165,7 +165,7 @@
 
                                 </td>
                 				<td>
-                                    <a href="memberrestore.php?MeID=<?php echo $memberid;?>" 
+                                    <a href="memberrestore.php?MeID=<?php echo $memberlid;?>" 
                                            class="btn btn-danger delete" id="delete">Delete</a>
                                 </td>
                                 <td>

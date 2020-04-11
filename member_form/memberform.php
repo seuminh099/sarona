@@ -254,6 +254,11 @@
             </button>
             <!-- Bottun Add new  --> 
 
+            <!-- Button Restore -->
+            <a href="memberrestore.php" class="btn btn-primary">Restore</a>
+            <!-- Button Restore -->
+
+
             <!-- Modal Addnew category-->
             <?php 
                 include('memberaddform.php'); 

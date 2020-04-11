@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 //import class
 	require_once('../inc/class.php');
 //instant object

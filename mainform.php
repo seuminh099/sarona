@@ -1,9 +1,10 @@
 <?php
+session_start();
 //import class.php
     require_once('inc/class.php');
 //instant object
     $obj = new mycodes;
-require_once('../inc/restrict.php');
+require_once('inc/restrict.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

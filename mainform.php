@@ -4,7 +4,7 @@ session_start();
     require_once('inc/class.php');
 //instant object
     $obj = new mycodes;
-require_once('inc/restrict.php');
+require_once('inc/restrictformain.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

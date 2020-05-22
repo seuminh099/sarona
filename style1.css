@@ -54,3 +54,24 @@ menu
 .aa{
 	margin-left: 20px;
 }
+.header-title{
+	font-family: Khmer Unicode F1;
+	color: #2197AA;
+	
+}
+.body-title{
+	font-family: Khmer Os Battambang ;
+	color: #2197AA;
+	
+}
+.btn-add{
+	margin : 0px !important;
+}
+.selectfind {
+    background-color: #2197AA !important;
+    color: white !important;
+}
+.text{
+	font-size: 13px;
+	font-family: Khmer Os Battambang;
+}

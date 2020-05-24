@@ -96,9 +96,9 @@ require_once('../inc/restrict.php');
                 if (isset($_REQUEST['StID'])) {
                     $key_staffid = $_REQUEST['StID'];
                     
-                    $countstaffsale = $obj->fun_lookup("tblsale","StaffID",$key_staffid);
-                    $countstaffpurchase = $obj->fun_lookup("tblpurchase","StaffID",$key_staffid);
-                    $row = $obj->fun_lookup("tblstaff","StaffID",$key_staffid);
+                    $countstaffsale = $obj->fun_lookup("tbl_sale","StaffID",$key_staffid);
+                    $countstaffpurchase = $obj->fun_lookup("tbl_purchase","StaffID",$key_staffid);
+                    $row = $obj->fun_lookup("tbl_staff","StaffID",$key_staffid);
                     if(($countstaffsale > 0) || ($countstaffpurchase > 0)){
                         ?>
                         <script type="text/javascript">toastr.error('Can not delete this staff')</script>
@@ -107,10 +107,10 @@ require_once('../inc/restrict.php');
                             $staffid=$row['StaffID'];
                             $photo = $row['Photo'];
 
-                            $table = "tblstaff";
+                            $table = "tbl_staff";
                             $fieldid = "StaffID";
 
-                            $countcatewithimg = $obj->fun_count("tblstaff","Photo",$photo);
+                            $countcatewithimg = $obj->fun_count("tbl_staff","Photo",$photo);
 
                             if($countcatewithimg == 1){
                                 $obj->fun_deleteimage($photo);
@@ -127,7 +127,7 @@ require_once('../inc/restrict.php');
                 if (isset($_REQUEST['StaffID'])) {
                     $staffid = $_REQUEST['StaffID'];
                     $row = $obj->fun_lookup("tblstaff","StaffID",$staffid);
-                    $table = "tblstaff";
+                    $table = "tbl_staff";
                     $fields = array("IsDelete");
                     $values = array("0");
                     $obj->fun_updatedata($table,$fields,$values,"StaffID",$staffid);
@@ -173,7 +173,7 @@ require_once('../inc/restrict.php');
                     -->   
                 		</thead>
                 		<?php
-                      $Staff = $obj->fun_displaydataCon("tblstaff","IsDelete","1");
+                      $Staff = $obj->fun_displaydataCon("tbl_staff","IsDelete","1");
                       foreach($Staff as $row) {
                         $staffid = $row['StaffID'];
                         $staffname = $row['StaffName'];

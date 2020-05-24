@@ -106,7 +106,7 @@ require_once('../inc/restrict.php');
                        if(isset($_REQUEST['SupplierID'])){
                         $subid = $_REQUEST['SupplierID'];
                         
-                        $tblname = "tblsupplier";
+                        $tblname = "tbl_supplier";
                         $fields = array("IsDelete");
                         $values = array("0");
                         $obj->fun_updatedata($tblname,$fields,$values,"SupplierID",$subid);
@@ -125,7 +125,7 @@ require_once('../inc/restrict.php');
                         if(isset($_REQUEST['SupID'])){
                             $key_supid = $_REQUEST['SupID'];
 
-                                $countpurchase = $obj->fun_count("tblpurchase","SupplierID",$key_supid);
+                                $countpurchase = $obj->fun_count("tbl_purchase","SupplierID",$key_supid);
 
                                 if ($countpurchase > 0) {
 
@@ -137,12 +137,12 @@ require_once('../inc/restrict.php');
                                     
                         }else{
                                
-                                $row = $obj->fun_lookup("tblsupplier","SupplierID",$key_supid);
+                                $row = $obj->fun_lookup("tbl_supplier","SupplierID",$key_supid);
                                     $logo = $row['Photo'];
                                     $table = "tblsupplier";
                                     $fieldid = "SupplierID";
 
-                                    $countcatewithimg = $obj->fun_count("tblsupplier","Photo",$logo);
+                                    $countcatewithimg = $obj->fun_count("tbl_supplier","Photo",$logo);
 
                                         if($countcatewithimg == 1){
                                             $obj->fun_deleteimage($logo);
@@ -180,7 +180,7 @@ require_once('../inc/restrict.php');
                 		</thead>
                 		<?php
                         //Accessing method fun_displaydata
-                        $product = $obj->fun_displaydataCon("tblsupplier","IsDelete",1);
+                        $product = $obj->fun_displaydataCon("tbl_supplier","IsDelete",1);
                         foreach ($product as $record){
                             	$supplierid = $record['SupplierID'];
                                 $suppliername = $record['SupplierName'];

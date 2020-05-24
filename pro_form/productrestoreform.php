@@ -106,10 +106,10 @@ require_once('../inc/restrict.php');
                     $key_proid = $_REQUEST['ProID'];
 
                     //count product in tblpurchasedetail
-                    $countpurchase = $obj->fun_count("tblpurchasedetail","ProductID",$key_proid);
+                    $countpurchase = $obj->fun_count("tbl_purchase_detail","ProductID",$key_proid);
                     //count product in tblsaledetail
-                    $countsale = $obj->fun_count("tblsaledetail","ProductID",$key_proid);
-                    $result = $obj->fun_countpro2con("tblproduct","Qty","ProductID","1",$key_proid);
+                    $countsale = $obj->fun_count("tbl_sale_detail","ProductID",$key_proid);
+                    $result = $obj->fun_countpro2con("tbl_product","Qty","ProductID","1",$key_proid);
                     //ber sern jea in $countpurchase == 0 and $countsale == 0 ban ney tha product ng ot torn ban louk ban tinh ey te jing delete ban
                     if(($countpurchase == 0 ) && ($countsale == 0)){
 
@@ -119,12 +119,12 @@ require_once('../inc/restrict.php');
                         <?php
                         }else{
 
-                            $row = $obj->fun_lookup("tblproduct","ProductID",$key_proid);
+                            $row = $obj->fun_lookup("tbl_product","ProductID",$key_proid);
                             $logo = $row['Photo'];
-                            $table = "tblproduct";
+                            $table = "tbl_product";
                             $fieldid = "ProductID";
                             
-                            $countcatewithimg = $obj->fun_count("tblcategory","Photo",$logo);
+                            $countcatewithimg = $obj->fun_count("tbl_category","Photo",$logo);
 
                             if($countcatewithimg == 1){
                             //Access to methoad fundeletedata and fundeleteimage
@@ -152,7 +152,7 @@ require_once('../inc/restrict.php');
                  if(isset($_REQUEST['ProductID'])){
                     $key_proid = $_REQUEST['ProductID'];
                     //$count_pro = $obj->fun_countpro($key_catid);
-                    $table = "tblproduct";
+                    $table = "tbl_product";
                     $fields = array("IsDelete");
                     $values = array("0");
                     $obj->fun_updatedata($table,$fields,$values,"ProductID",$key_proid);
@@ -184,7 +184,7 @@ require_once('../inc/restrict.php');
                 		</thead>
                 		<?php
                         //Accessing method fun_displaydata
-                        $product = $obj->fun_displaydataCon("tblproduct","IsDelete",1);
+                        $product = $obj->fun_displaydataCon("tbl_product","IsDelete",1);
                         foreach ($product as $record){
                                 $catid = $record['CategoryID'];
                                 $proid = $record['ProductID'];
@@ -192,11 +192,11 @@ require_once('../inc/restrict.php');
                                 $imei = $record['Imei'];
                                 $desc = $record['Description'];
 
-                                $category = $obj->fun_lookup("tblcategory","CategoryID",$catid);
+                                $category = $obj->fun_lookup("tbl_category","CategoryID",$catid);
                                 $catname = $category['CategoryName'];
 
                                 $modelid = $record['ModelID'];
-                                $model = $obj->fun_lookup("tblmodel","ModelID",$modelid);
+                                $model = $obj->fun_lookup("tbl_model","ModelID",$modelid);
                                 $modelname = $model['ModelName'];
 
                                 $qty = $record['Qty'];

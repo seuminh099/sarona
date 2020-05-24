@@ -103,11 +103,11 @@ require_once('../inc/restrict.php');
                     if(isset($_REQUEST['MoID'])){
                         $key_modelid = $_REQUEST['MoID'];
                         //count product
-                        $countproduct = $obj->fun_count("tblproduct","ModelID",$key_modelid);
+                        $countproduct = $obj->fun_count("tbl_product","ModelID",$key_modelid);
                         //ber sern jea in category nus ot mean product oy lub ban
                         if($countproduct == 0){
-                            $row = $obj->fun_lookup("tblmodel","ModelID",$key_modelid);
-                            $table = "tblmodel";
+                            $row = $obj->fun_lookup("tbl_model","ModelID",$key_modelid);
+                            $table = "tbl_model";
                             $fieldid = "ModelID";
                                 $obj->fun_deletedata($table,$fieldid,$key_modelid);
                             ?>
@@ -124,7 +124,7 @@ require_once('../inc/restrict.php');
                             //test key restore
                 if (isset($_REQUEST['ModelID'])) {
                     $modelid = $_REQUEST['ModelID'];
-                        $table = "tblmodel";
+                        $table = "tbl_model";
                         $fields = array("IsDelete");
                         $values = array("0");
                         $obj->fun_updatedata($table,$fields,$values,"ModelID",$modelid); 
@@ -150,7 +150,7 @@ require_once('../inc/restrict.php');
                 		</thead>
                 		<?php
                 		//Accessing method fun_displaydata
-                		$Category = $obj->fun_displaydataCon("tblmodel","IsDelete",1);
+                		$Category = $obj->fun_displaydataCon("tbl_model","IsDelete",1);
                 		foreach ($Category as $record){
                 			$modelid = $record['ModelID'];
                 			$modelname = $record['ModelName'];

@@ -106,9 +106,9 @@ require_once('../inc/restrict.php');
 
                             if ($count_pro == 0){
 
-                                $row = $obj->fun_lookup("tblcategory","CategoryID",$key_catid);
+                                $row = $obj->fun_lookup("tbl_category","CategoryID",$key_catid);
 
-                            $table = "tblcategory";
+                            $table = "tbl_category";
                             $fields = array("IsDelete");
                             $values = array("1");
                             $obj->fun_updatedata($table,$fields,$values,"CategoryID",$key_catid);
@@ -139,13 +139,13 @@ require_once('../inc/restrict.php');
                             }else{
                                 $catphoto = $oldphoto;
                             }
-                            $result = $obj->fun_checkData("tblcategory","CategoryName","CategoryID",$catname,$catid);
+                            $result = $obj->fun_checkData("tbl_category","CategoryName","CategoryID",$catname,$catid);
                             if($result){
 
                             echo "<h2>Cannot Update</h2>";
                             }else{
                             
-                                $tblname = "tblcategory";
+                                $tblname = "tbl_category";
                                 $fields = array("CategoryName","Photo","Description");
                                 $values = array($catname,$catphoto,$desc);
                                 $obj->fun_updatedata($tblname,$fields,$values,"CategoryID",$catid);
@@ -167,13 +167,13 @@ require_once('../inc/restrict.php');
                             }else{
                                 $Photo = "default.jpg";
                             }
-                            $result = $obj->fun_checkExistingData($catname,"tblcategory","CategoryName");
+                            $result = $obj->fun_checkExistingData($catname,"tbl_category","CategoryName");
                             if($result){
                     ?>
                             <script type="text/javascript">toastr.error('<?php echo "$catname is Exsting"; ?>')</script>    
                     <?php
                             }else{
-                                $tblname = "tblcategory";
+                                $tblname = "tbl_category";
                                 $fields = array("CategoryName","Photo","Description");
                                 $values = array($catname,$Photo,$desc);
                                 $obj->fun_insertdata($tblname,$fields,$values);
@@ -204,7 +204,7 @@ require_once('../inc/restrict.php');
                 		</thead>
                 		<?php
                 		//Accessing method fun_displaydata
-                		$Category = $obj->fun_displaydataCon("tblcategory","IsDelete",0);
+                		$Category = $obj->fun_displaydataCon("tbl_category","IsDelete",0);
                 		foreach ($Category as $record){
                 			$catid = $record['CategoryID'];
 

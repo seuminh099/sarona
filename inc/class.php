@@ -6,7 +6,8 @@
 		//methoad
 		//PHP and Mysql Connection
 		function fun_link(){
-			$this->pro_link = mysqli_connect("localhost","root","","db_phone");
+			$this->pro_link = mysqli_connect("localhost","root","","bd_phone");
+			mysqli_set_charset($this->pro_link,"utf8");
 			return $this->pro_link;
 		}
 		//check Existing Username and password

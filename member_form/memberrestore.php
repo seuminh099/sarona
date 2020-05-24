@@ -103,11 +103,11 @@ session_start();
                     if(isset($_REQUEST['MeID'])){
                         $key_memberid = $_REQUEST['MeID'];
                         //count customer
-                        $countcustomer = $obj->fun_count("tblcustomer","MemberID",$key_memberid);
+                        $countcustomer = $obj->fun_count("tbl_customer","MemberID",$key_memberid);
                         //ber sern jea in member nus ot mean customer oy lub ban
                         if($countcustomer == 0){
-                            $row = $obj->fun_lookup("tblmember","MemberID",$key_memberid);
-                            $table = "tblmember";
+                            $row = $obj->fun_lookup("tbl_member","MemberID",$key_memberid);
+                            $table = "tbl_member";
                             $fieldid = "MemberID";
                                 $obj->fun_deletedata($table,$fieldid,$key_memberid);
                             ?>
@@ -124,7 +124,7 @@ session_start();
                 //test key restore
                 if (isset($_REQUEST['MemberID'])) {
                     $memberid = $_REQUEST['MemberID'];
-                        $table = "tblmember";
+                        $table = "tbl_member";
                         $fields = array("IsDelete");
                         $values = array("0");
                         $obj->fun_updatedata($table,$fields,$values,"MemberID",$memberid); 
@@ -150,7 +150,7 @@ session_start();
                 		</thead>
                 		<?php
                 		//Accessing method fun_displaydata
-                		$member = $obj->fun_displaydataCon("tblmember","IsDelete",1);
+                		$member = $obj->fun_displaydataCon("tbl_member","IsDelete",1);
                 		foreach ($member as $record){
                 			$memberid = $record['MemberID'];
                 			$membertype = $record['MemberType'];

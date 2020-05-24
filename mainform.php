@@ -122,7 +122,7 @@ require_once('inc/restrict.php');
 
                 <?php
                         //Accessing method fun_displaydata
-                        $Category = $obj->fun_displaydataCon("tblproduct","IsDelete",0);
+                        $Category = $obj->fun_displaydataCon("tbl_product","IsDelete",0);
                         foreach ($Category as $record){
                             $proid = $record['ProductID'];
                             $proname= $record['ProductName'];

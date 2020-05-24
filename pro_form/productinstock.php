@@ -90,139 +90,86 @@ require_once('../inc/restrict.php');
                     <center><h3 class="header-title">ទំនិញក្នុងស្តុក</h3></center>
                     <br>
                     <form>
-                        <!-- header row 1 -->
-                        <div class="form-group row">
-                            <div class="col-sm-4 body-title">ស្វែងរកតាមឈ្មោះ</div>
+                        <!-- Row 1 ------------- -->
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label class="col-form-label">ស្វែងរកតាមឈ្មោះទំនិញ</label>
+                                <div class="input-group ">
+                                  <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                    <option selected></option>
+                                    <option></option>
+                                  </select>
+                                </div>
+                            </div>
 
-                            <div class="col-sm-3 body-title">ប្រភេទទំនិញ</div>
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">ប្រភេទទំនិញ</label>
+                                <div class="input-group ">
+                                  <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                    <option selected></option>
+                                    <option></option>
+                                  </select>
+                                </div>
+                            </div>
 
-                            <div class="col-sm-3 body-title">ទំហំផ្ទុក</div>
+                            <div class="form-group col-md-2">
+                                <label class="col-form-label">ទំហំផ្ទុក</label>
+                                <div class="input-group ">
+                                  <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                    <option selected></option>
+                                    <option></option>
+                                  </select>
+                                </div>
+                            </div>
 
-                            <div class="col-sm-2 body-title">កូតទំនិញ</div>
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">កូដទំនិញ</label>
+                                <div class="input-group ">
+                                  <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                    <option selected></option>
+                                    <option></option>
+                                  </select>
+                                </div>
+                            </div>                
                         </div>
 
-                        <!-- Detail row 1 -->
-                        <div class="form-group row">
-                            <!-- Cbo Find By Name Product -->
-                            <div class="col-sm-3">
-                                <select class="form-control form-control-sm selectfind">
-                                    <option>ស្វែងរកតាមឈ្មោះ</option>
-                                </select>
+                        <!-- Row 2 ------------- -->
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">ស្វែងរកតាមវិក្ក័យប័ត្រ</label>
+                                <div class="input-group ">
+                                  <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                    <option selected></option>
+                                    <option></option>
+                                  </select>
+                                </div>
                             </div>
 
-                            <!-- Btn Add Product -->
-                            <div class="col-sm-1">
-                                
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">ថ្ងៃខែនាំចូល</label>
+                                <div class="input-group ">
+                                  <input type="date" name="txtaddress" class="form-control" id="catname" >
+                                </div>
                             </div>
 
-                            <!-- Cbo Find By Category Name -->
-                            <div class="col-sm-2">
-                                <select class="form-control form-control-sm selectfind">
-                                    <option>ប្រភេទទំនិញ</option>
-                                </select>
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">ដល់ថ្ងៃទី</label>
+                                <div class="input-group ">
+                                  <input type="date" name="txtaddress" class="form-control" id="catname" >
+                                </div>
                             </div>
 
-                            <!-- Btn Add Category -->
-                            <div class="col-sm-1">
-                                
-                            </div>
-
-                            <!-- Cbo Find By Storage Name -->
-                            <div class="col-sm-2">
-                                <select class="form-control form-control-sm selectfind">
-                                    <option>ទំហំផ្ទុក</option>
-                                </select>
-                            </div>
-
-                            <!-- Btn Add Storage -->
-                            <div class="col-sm-1">
-                                
-                            </div>
-
-                            <!-- Cbo Find By Code Product -->
-                            <div class="col-sm-2">
-                                <select class="form-control form-control-sm selectfind">
-                                    <option>កូតទំនិញ</option>
-                                </select>
-                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">អ្នកផ្គត់ផ្គង់</label>
+                                <div class="input-group ">
+                                  <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                    <option selected></option>
+                                    <option></option>
+                                  </select>
+                                </div>
+                            </div>                
                         </div>
 
-                        <!-- header row 2 -->
-                        <div class="form-group row">
-                            <div class="col-sm-4 body-title">លេខវិក្ក័យប័ត្រ</div>
-
-                            <div class="col-sm-3 body-title">ថ្ងៃខែនាំចូល</div>
-
-                            <div class="col-sm-3 body-title">ដល់</div>
-
-                            <div class="col-sm-2 body-title">អ្នកផ្គត់ផ្គង់</div>
-                        </div>
-
-                        <!-- Detail row 2 -->
-                        <div class="form-group row">
-                            <!-- Cbo Find By Invoice Number -->
-                            <div class="col-sm-3">
-                                <select class="form-control form-control-sm selectfind">
-                                    <option>លេខវិក្ក័យប័ត្រ</option>
-                                </select>
-                            </div>
-
-                            <!-- Blank col -->
-                            <div class="col-sm-1">  
-                            </div>
-
-                            <!-- Cbo Find By Start Date -->
-                            <div class="col-sm-2">
-                                <select class="form-control form-control-sm selectfind">
-                                    <option>ថ្ងៃ ខែ ឆ្នាំ</option>
-                                </select>
-                            </div>
-
-                            <!-- Blank col -->
-                            <div class="col-sm-1">
-                            </div>
-
-                            <!-- Cbo find by End Date -->
-                            <div class="col-sm-2">
-                                <select class="form-control form-control-sm selectfind">
-                                    <option>ថ្ងៃ ខែ ឆ្នាំ</option>
-                                </select>
-                            </div>
-
-                            <!-- Blank col -->
-                            <div class="col-sm-1">
-                            </div>
-
-                            <!-- Cbo find by Supplier -->
-                            <div class="col-sm-2">
-                                <select class="form-control form-control-sm selectfind">
-                                    <option>អ្នកផ្គតផ្គង់</option>
-                                </select>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <div class="col-1">
-                                <button type="button" class="btn btn-primary btn-sm">ស្វែងរក</button>
-                            </div>
-
-                            <div class="col-3">
-                                <button type="button" class="btn btn-primary btn-sm">បង្ហាញទាំងអស់</button>
-                            </div>
-
-                             <div class="col-6">
-                                
-                            </div>
-
-                             <div class="col-1">
-                                <button type="button" class="btn btn-primary btn-sm">Excel</button>
-                            </div>
-
-                             <div class="col-1">
-                                <button type="button" class="btn btn-primary btn-sm">Print</button>
-                            </div>
-                        </div>
                     </form>
 
                     <!-- Display Product -->

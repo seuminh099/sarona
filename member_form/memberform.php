@@ -102,14 +102,14 @@ require_once('../inc/restrict.php');
                 if(isset($_REQUEST['btn_addnew'])){
                                 $membertype = $_REQUEST['txtmembertype'];
                                 $discount = $_REQUEST['txtdisc'];
-                                $result = $obj->fun_checkExistingData($membertype,"tblmember","MemberType");
+                                $result = $obj->fun_checkExistingData($membertype,"tbl_member","MemberType");
                                 if($result){
                                     ?>
                           <!-- Alert Error -->
                             <script type="text/javascript">toastr.error('<?php echo $membertype ?> Existing Members')</script>
                 <?php
                                 }else{
-                                    $tblname = "tblmember";
+                                    $tblname = "tbl_member";
                                     $fields = array("MemberType","Discount");
                                     $values = array($membertype,$discount);
                                     $obj->fun_insertdata($tblname,$fields,$values);
@@ -123,10 +123,10 @@ require_once('../inc/restrict.php');
         //Test Delete Button
         if(isset($_REQUEST['MemberID'])){
             $key_memberid = $_REQUEST['MemberID'];
-            $count = $obj->fun_count("tblcustomer","MemberID",$key_memberid);
+            $count = $obj->fun_count("tbl_customer","MemberID",$key_memberid);
             if ($count == 0){
-                $row = $obj->fun_lookup("tblmember","MemberID",$key_memberid);
-            $table = "tblmember";
+                $row = $obj->fun_lookup("tbl_member","MemberID",$key_memberid);
+            $table = "tbl_member";
             //Access to methoad fundeletedata and fundeleteimage
             $fields = array("IsDelete");
             $values = array("1");
@@ -147,14 +147,14 @@ require_once('../inc/restrict.php');
             $memberid = strtolower(trim($_REQUEST['txt_MemberID']));
             $membertype = strtolower(trim($_REQUEST['txt_Membertype']));
             $discount = $_REQUEST['txt_discount'];
-            $result = $obj->fun_checkData("tblmember","MemberType","MemberID",$membertype,$memberid);
+            $result = $obj->fun_checkData("tbl_member","MemberType","MemberID",$membertype,$memberid);
              if($result){
                 ?>
                           <!-- Alert Error -->
                             <script type="text/javascript">toastr.error('Cannot Update')</script>
                 <?php
             }else{
-                $tblname = "tblmember";
+                $tblname = "tbl_member";
                 $fields = array("MemberType","Discount");
                 $values = array($membertype,$discount);
                 $obj->fun_updatedata($tblname,$fields,$values,"MemberID",$memberid);
@@ -179,7 +179,7 @@ require_once('../inc/restrict.php');
                 		</thead>
                 		<?php
                 		//Accessing method fun_displaydata
-                		$Category = $obj->fun_displaydataCon("tblmember","IsDelete",0);
+                		$Category = $obj->fun_displaydataCon("tbl_member","IsDelete",0);
                 		foreach ($Category as $record){
                 			$memberid = $record['MemberID'];
                 			$membertype= $record['MemberType'];

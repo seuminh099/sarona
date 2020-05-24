@@ -107,7 +107,7 @@ require_once('../inc/restrict.php');
                         if(isset($_REQUEST['CateID'])){
                             $key_catid = $_REQUEST['CateID'];
                             
-                            $table = "tblcategory";
+                            $table = "tbl_category";
                             $fields = array("IsDelete");
                             $values = array("0");
                             $obj->fun_updatedata($table,$fields,$values,"CategoryID",$key_catid);
@@ -129,12 +129,12 @@ require_once('../inc/restrict.php');
                             //ber sern jea in category nus ot mean product oy lub ban
                             if($countproduct == 0){
 
-                                $row = $obj->fun_lookup("tblcategory","CategoryID",$key_catid);
+                                $row = $obj->fun_lookup("tbl_category","CategoryID",$key_catid);
                                 $logo = $row['Photo'];
-                                $table = "tblcategory";
+                                $table = "tbl_category";
                                 $fieldid = "CategoryID";
 
-                                $countcatewithimg = $obj->fun_count("tblcategory","Photo",$logo);
+                                $countcatewithimg = $obj->fun_count("tbl_category","Photo",$logo);
 
                                 if($countcatewithimg == 1){
                                     $obj->fun_deleteimage($logo);
@@ -166,7 +166,7 @@ require_once('../inc/restrict.php');
                 		</thead>
                 		<?php
                 		//Accessing method fun_displaydata
-                		$Category = $obj->fun_displaydataCon("tblcategory","IsDelete",1);
+                		$Category = $obj->fun_displaydataCon("tbl_category","IsDelete",1);
                 		foreach ($Category as $record){
                 			$catid = $record['CategoryID'];
                 			$categoryname = $record['CategoryName'];

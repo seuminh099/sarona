@@ -101,7 +101,7 @@ require_once('../inc/restrict.php');
                     <?php 
                       if(isset($_REQUEST['CategoryID'])){
                         $key_catid=$_REQUEST['CategoryID'];
-                        $arrow=$obj->fun_lookup("tblcategory","CategoryID",$key_catid);
+                        $arrow=$obj->fun_lookup("tbl_category","CategoryID",$key_catid);
                         $cat_name=$arrow['CategoryName'];
                     ?>
                     <h3 ><center>List of Product <?php echo  $cat_name; ?></center></h3>
@@ -112,7 +112,7 @@ require_once('../inc/restrict.php');
                 if(isset($_REQUEST['ProductID'])){
                     $key_proid = $_REQUEST['ProductID'];
                     //$count_pro = $obj->fun_countpro($key_catid);
-                    $table = "tblproduct";
+                    $table = "tbl_product";
                     $fields = array("IsDelete");
                     $values = array("1");
                     $obj->fun_updatedata($table,$fields,$values,"ProductID",$key_proid);
@@ -138,14 +138,14 @@ require_once('../inc/restrict.php');
                     }
                     
                     $result1 = $obj->fun_countpro($proname,$Status);
-                    $result2 = $obj->fun_checkExistingData($imei,"tblproduct","Imei");
+                    $result2 = $obj->fun_checkExistingData($imei,"tbl_product","Imei");
                     if($result1 >0){
                 ?>
                     <script type="text/javascript">toastr.error('<?php echo $proname?> is Exsting')</script>
                 <?php
                     }else{
                           if($result2 == false){
-                            $tblname = "tblproduct";
+                            $tblname = "tbl_product";
                              $fields = array("ProductName","Imei","Description","CategoryID","ModelID","UnitPrice_Purchase","UnitPrice_Sale","Photo","Status");
                              $values = array($proname,$imei,$desc,$cat_id,$model_id,$pricepur,$pricesale,$Logo,$Status);
                              $obj->fun_insertdata($tblname,$fields,$values);
@@ -183,7 +183,7 @@ require_once('../inc/restrict.php');
 
                     $result = $obj->fun_countproupdate($proname,$proid,$Status);
                     $result1 = $obj->fun_countpro($proname,$Status);
-                    $result2 = $obj->fun_checkData("tblproduct","Imei","ProductID",$imei,$proid);
+                    $result2 = $obj->fun_checkData("tbl_product","Imei","ProductID",$imei,$proid);
 
                     if((($result == 1 ) && ($result1 == 1)) || (($result == 0 ) && ($result1 == 0))){
                         if($result2){
@@ -192,7 +192,7 @@ require_once('../inc/restrict.php');
                             <script type="text/javascript">toastr.error('<?php echo $imei?> is Exsting')</script>
                     <?php
                         }else{
-                            $tblname = "tblproduct";
+                            $tblname = "tbl_product";
                             $fields = array("ProductName","Imei","Description","CategoryID","ModelID","UnitPrice_Purchase","UnitPrice_Sale","Photo","Status");
                             $values = array($proname,$imei,$desc,$cat_id,$model_id,$pricepur,$pricesale,$Logo,$Status);
                             $obj->fun_updatedata($tblname,$fields,$values,"ProductID",$proid);
@@ -232,7 +232,7 @@ require_once('../inc/restrict.php');
                 		</thead>
                 		<?php
                         //Accessing method fun_displaydata
-                        $product = $obj->fun_displaydataCon("tblproduct","IsDelete",0);
+                        $product = $obj->fun_displaydataCon("tbl_product","IsDelete",0);
                         foreach ($product as $record){
                             $catid = $record['CategoryID'];
                             if ($key_catid== $catid) {
@@ -241,11 +241,11 @@ require_once('../inc/restrict.php');
                                 $imei = $record['Imei'];
                                 $desc = $record['Description'];
 
-                                $category = $obj->fun_lookup("tblcategory","CategoryID",$catid);
+                                $category = $obj->fun_lookup("tbl_category","CategoryID",$catid);
                                 $catname = $category['CategoryName'];
 
                                 $modelid = $record['ModelID'];
-                                $model = $obj->fun_lookup("tblmodel","ModelID",$modelid);
+                                $model = $obj->fun_lookup("tbl_model","ModelID",$modelid);
                                 $modelname = $model['ModelName'];
 
                                 $qty = $record['Qty'];
@@ -316,7 +316,7 @@ require_once('../inc/restrict.php');
                                                 <label for="Sex" class="col-form-label">Category</label>
                                                 <select class="form-control" id="Sex" name="txt_catname" value="<?php echo $catid; ?>">
                                                     <?php
-                                                        $categories = $obj->fun_displaydataCon("tblcategory","IsDelete",0);
+                                                        $categories = $obj->fun_displaydataCon("tbl_category","IsDelete",0);
                                                         foreach ($categories as $item) {
                                                             $cat_id = $item['CategoryID'];
                                                             $cat_name = $item['CategoryName'];
@@ -334,7 +334,7 @@ require_once('../inc/restrict.php');
                                                 <label for="meodel" class="col-form-label">Model</label>
                                                 <select class="form-control" id="Sex" name="txt_modelname" value="<?php echo $catid; ?>">
                                                     <?php
-                                                        $model = $obj->fun_displaydataCon("tblmodel","IsDelete",0);
+                                                        $model = $obj->fun_displaydataCon("tbl_model","IsDelete",0);
                                                         foreach ($model as $row) {
                                                             $model_id = $row['ModelID'];
                                                             $model_name = $row['ModelName'];

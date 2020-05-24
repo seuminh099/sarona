@@ -31,7 +31,7 @@
                                                 <label for="cat" class="col-form-label">Category</label>
                                                 <select class="form-control" id="cat" name="txt_catname" >
                                                         <?php
-                                                            $categories = $obj->fun_displaydataCon("tblcategory","IsDelete",0);
+                                                            $categories = $obj->fun_displaydataCon("tbl_category","IsDelete",0);
                                                             foreach ($categories as $item) {
                                                                 $cat_id = $item['CategoryID'];
                                                                 $cat_name = $item['CategoryName'];
@@ -49,7 +49,7 @@
                                                 <label for="Sex" class="col-form-label">Model</label>
                                                 <select class="form-control" id="Sex" name="txt_modelname" >
                                                     <?php
-                                                        $model = $obj->fun_displaydataCon("tblmodel","IsDelete",0);
+                                                        $model = $obj->fun_displaydataCon("tbl_model","IsDelete",0);
                                                         foreach ($model as $row) {
                                                             $model_id = $row['ModelID'];
                                                             $model_name = $row['ModelName'];

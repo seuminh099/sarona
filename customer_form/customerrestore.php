@@ -96,8 +96,8 @@ require_once('../inc/restrict.php');
                 if (isset($_REQUEST['CusID'])) {
                     $key_cusid = $_REQUEST['CusID'];
                     
-                    $countstaffsale = $obj->fun_lookup("tblsale","CustomerID",$key_cusid);
-                    $row = $obj->fun_lookup("tblcustomer","CustomerID",$key_cusid);
+                    $countstaffsale = $obj->fun_lookup("tbl_sale","CustomerID",$key_cusid);
+                    $row = $obj->fun_lookup("tbl_customer","CustomerID",$key_cusid);
                     if($countstaffsale > 0){
                         ?>
                         <script type="text/javascript">toastr.error('Can not delete this customer')</script>
@@ -106,10 +106,10 @@ require_once('../inc/restrict.php');
                             $staffid=$row['CustomerID'];
                             $photo = $row['Photo'];
 
-                            $table = "tblcustomer";
+                            $table = "tbl_customer";
                             $fieldid = "CustomerID";
 
-                            $countcatewithimg = $obj->fun_count("tblcustomer","Photo",$photo);
+                            $countcatewithimg = $obj->fun_count("tbl_customer","Photo",$photo);
 
                             if($countcatewithimg == 1){
                                 $obj->fun_deleteimage($photo);
@@ -125,9 +125,9 @@ require_once('../inc/restrict.php');
                 /* --------------------------------------- Test Button Restore --------------------------------- */
                 if (isset($_REQUEST['CustomerID'])) {
                     $cusid = $_REQUEST['CustomerID'];
-                    $row = $obj->fun_lookup("tblcustomer","CustomerID",$cusid);
+                    $row = $obj->fun_lookup("tbl_customer","CustomerID",$cusid);
 
-                    $table = "tblcustomer";
+                    $table = "tbl_customer";
                     $fields = array("IsDelete");
                     $values = array("0");
                     $obj->fun_updatedata($table,$fields,$values,"CustomerID",$cusid);
@@ -172,7 +172,7 @@ require_once('../inc/restrict.php');
                     -->   
                 		</thead>               
                 <?php
-                $cus = $obj->fun_displaydataCon("tblcustomer","IsDelete",1);
+                $cus = $obj->fun_displaydataCon("tbl_customer","IsDelete",1);
                 foreach($cus as $row) {
                     $cusid = $row['CustomerID'];
                     $cusname = $row['CustomerName'];
@@ -185,7 +185,7 @@ require_once('../inc/restrict.php');
                     $email = $row['Email'];
                     $photo = $row['Photo'];
                     $memid = $row['MemberID'];
-                    $member = $obj->fun_lookup("tblmember","MemberID",$memid);
+                    $member = $obj->fun_lookup("tbl_member","MemberID",$memid);
                     $memtype = $member['MemberType'];
 
                 ?>

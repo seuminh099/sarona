@@ -102,7 +102,7 @@ session_start();
                 /* ----------------------------------------- Test Delete Button ----------------------------------------- */
                 if (isset($_REQUEST['CustomerID'])) {
                     $cusid = $_REQUEST['CustomerID'];
-                        $table = "tblcustomer";
+                        $table = "tbl_customer";
                         $fields = array("IsDelete");
                         $values = array("1");
                         $obj->fun_updatedata($table,$fields,$values,"CustomerID",$cusid);
@@ -128,7 +128,7 @@ session_start();
 
                     $member = $_REQUEST['txtmember'];
                 
-                        $table = "tblcustomer";
+                        $table = "tbl_customer";
                         $fields = array("CustomerName","Sex","DOB","POB","JobTitle","Address","Phone","Email","Photo","MemberID");
                         $values = array($cusname,$sex,$dob,$pob,$jobtitle,$address,$phone,$email,$photo,$member);
                         $obj->fun_insertdata($table,$fields,$values);
@@ -157,7 +157,7 @@ session_start();
                                     $photo = $oldphoto;
                                 }
                                 $member = $_REQUEST['txtmember'];
-                                    $table = "tblcustomer";
+                                    $table = "tbl_customer";
                                     $fields = array("CustomerName","Sex","DOB","POB","JobTitle","Address","Phone","Email","Photo","MemberID");
                                     $values = array($cusname,$sex,$dob,$pob,$jobtitle,$address,$phone,$email,$photo,$member);
                                     $obj->fun_updatedata($table,$fields,$values,"CustomerID",$cusid);
@@ -189,7 +189,7 @@ session_start();
                 		</thead>
                 		<?php
                 		//Accessing method fun_displaydata
-                		$Category = $obj->fun_displaydataCon("tblcustomer","IsDelete",0);
+                		$Category = $obj->fun_displaydataCon("tbl_customer","IsDelete",0);
                 		foreach ($Category as $record){
                 			$customerid = $record['CustomerID'];
                 			$customername= $record['CustomerName'];
@@ -302,7 +302,7 @@ session_start();
                                                 <select name="txtmember" class="form-control" id="member" value="<?php echo $member;?>">
                                                     <?php
 
-                                                        $updatemember = $obj->fun_displaydataCon("tblmember","IsDelete",0);
+                                                        $updatemember = $obj->fun_displaydataCon("tbl_member","IsDelete",0);
 
                                                         foreach ($updatemember as $items) {
                                                             $memberid = $items['MemberID'];

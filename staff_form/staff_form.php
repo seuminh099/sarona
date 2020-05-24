@@ -95,7 +95,7 @@ require_once('../inc/restrict.php');
         /* ------------------------------------------------ Test Delete Button ------------------------------- */
         if (isset($_REQUEST['StaffID'])) {
             $staffid = $_REQUEST['StaffID'];
-            $table = "tblstaff";
+            $table = "tbl_staff";
             $fields = array("IsDelete");
             $values = array("1");
             $obj->fun_updatedata($table,$fields,$values,"StaffID",$staffid);
@@ -124,7 +124,7 @@ require_once('../inc/restrict.php');
           $username = $_REQUEST['txtuser'];
           $password = $_REQUEST['txtpass'];
 
-            $table = "tblstaff";
+            $table = "tbl_staff";
             $fields = array("StaffName","Sex","DOB","POB","JobTitle","Address","Phone","Email","Photo","Username","Password");
             $values = array($staffname,$sex,$dob,$pob,$jobtitle,$address,$phone,$email,$photo,$username,$password);
             $obj->fun_insertdata($table,$fields,$values);
@@ -155,7 +155,7 @@ require_once('../inc/restrict.php');
           $username = $_REQUEST['txtuser'];
           $password = $_REQUEST['txtpass'];
 
-            $table = "tblstaff";
+            $table = "tbl_staff";
             $fields = array("StaffName","Sex","DOB","POB","JobTitle","Address","Phone","Email","Photo","Username","Password");
             $values = array($staffname,$sex,$dob,$pob,$jobtitle,$address,$phone,$email,$photo,$username,$password);
             $obj->fun_updatedata($table,$fields,$values,"StaffID",$staffid);
@@ -200,7 +200,7 @@ require_once('../inc/restrict.php');
                       -->   
                 		</thead>
                 		<?php
-                      $Staff = $obj->fun_displaydataCon("tblstaff","IsDelete","0");
+                      $Staff = $obj->fun_displaydataCon("tbl_staff","IsDelete","0");
                       foreach($Staff as $row) {
                         $staffid = $row['StaffID'];
                         $staffname = $row['StaffName'];

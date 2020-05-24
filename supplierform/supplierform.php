@@ -118,7 +118,7 @@ require_once('../inc/restrict.php');
                             }else{
                                 $photo = $oldphoto;
                             }
-                                $tblname = "tblsupplier";
+                                $tblname = "tbl_supplier";
                                 $fields = array("SupplierName","Sex","DOB","POB","JobTitle","CompanyName","Address","Phone","Email","Photo");
                                 $values = array($subname,$sex,$dob,$pob,$jobtitle,$company,$address,$phone,$email,$photo);
                                 $obj->fun_updatedata($tblname,$fields,$values,"SupplierID",$subid);
@@ -150,7 +150,7 @@ require_once('../inc/restrict.php');
                                 $photo = "default.jpg";
                             }
                             
-                            $tblname="tblsupplier";
+                            $tblname="tbl_supplier";
                             $fields=array("SupplierName","Sex","DOB","POB","JobTitle","CompanyName","Address","Phone","Email","Photo");
                             $values=array($suppliername,$sex,$dob,$pob,$jobtitle,$companyname,$address,$phone,$email,$photo);
                             $obj->fun_insertdata($tblname,$fields,$values);
@@ -169,14 +169,14 @@ require_once('../inc/restrict.php');
                         if(isset($_REQUEST['SupplierID'])){
                             $subid = $_REQUEST['SupplierID'];
 
-                            $countpurchase = $obj->fun_count("tblpurchase","SupplierID",$subid);
+                            $countpurchase = $obj->fun_count("tbl_72\purchase","SupplierID",$subid);
 
                             if ($countpurchase > 0) {         
                     ?>
                                 <script type="text/javascript">toastr.error('you cannot delete this suplier')</script>
                     <?php
                             }else{
-                                $tblname = "tblsupplier";
+                                $tblname = "tbl_supplier";
                                 $fields = array("IsDelete");
                                 $values = array("1");
                                 $obj->fun_updatedata($tblname,$fields,$values,"SupplierID",$subid);
@@ -210,7 +210,7 @@ require_once('../inc/restrict.php');
                 		</thead>
                 		<?php
                         //Accessing method fun_displaydata
-                        $product = $obj->fun_displaydataCon("tblsupplier","IsDelete",0);
+                        $product = $obj->fun_displaydataCon("tbl_supplier","IsDelete",0);
                         foreach ($product as $record){
                             	$supplierid = $record['SupplierID'];
                                 $suppliername = $record['SupplierName'];

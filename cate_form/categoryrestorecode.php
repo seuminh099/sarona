@@ -7,7 +7,7 @@
 	if(isset($_REQUEST['CategoryID'])){
 		$key_catid = $_REQUEST['CategoryID'];
 		//$count_pro = $obj->fun_countpro($key_catid);
-		$table = "tblcategory";
+		$table = "tbl_category";
         $fields = array("IsDelete");
         $values = array("0");
         $obj->fun_updatedata($table,$fields,$values,"CategoryID",$key_catid);

@@ -104,7 +104,7 @@ require_once('../inc/restrict.php');
     if(isset($_REQUEST['btn_addnew'])){
         $modelname = $_REQUEST['txtmodelname'];
         $desc = $_REQUEST['txtdesc'];
-        $result = $obj->fun_checkExistingData($modelname,"tblmodel","ModelName");
+        $result = $obj->fun_checkExistingData($modelname,"tbl_model","ModelName");
         if($result){
        
             ?>
@@ -112,7 +112,7 @@ require_once('../inc/restrict.php');
                             <script type="text/javascript">toastr.error('You cannot addnew model')</script>
                 <?php
         }else{
-            $tblname = "tblmodel";
+            $tblname = "tbl_model";
             $fields = array("ModelName","Description");
             $values = array($modelname,$desc);
             $obj->fun_insertdata($tblname,$fields,$values);
@@ -127,8 +127,8 @@ require_once('../inc/restrict.php');
 		$key_moid = $_REQUEST['ModelID'];
 		$countproduct = $obj->fun_count("tblproduct","ModelID",$key_moid);
 		if ($countproduct == 0){
-			$row = $obj->fun_lookup("tblmodel","ModelID",$key_moid);
-			$table = "tblmodel";
+			$row = $obj->fun_lookup("tbl_model","ModelID",$key_moid);
+			$table = "tbl_model";
 			//Access to methoad fundeletedata and fundeleteimage
 	        $fields = array("IsDelete");
 	        $values = array("1");
@@ -150,14 +150,14 @@ require_once('../inc/restrict.php');
         $modelid=$_REQUEST['txtmodelid'];
         $modelname=$_REQUEST['txtmodelname'];
         $des=$_REQUEST['txtdesc'];
-        $result = $obj->fun_checkData("tblmodel","ModelName","ModelID",$modelname,$modelid);
+        $result = $obj->fun_checkData("tbl_model","ModelName","ModelID",$modelname,$modelid);
              if($result){
                 ?>
                           <!-- Alert Error -->
                             <script type="text/javascript">toastr.error('Cannot Update')</script>
                 <?php
             }else{
-                $table="tblmodel";
+                $table="tbl_model";
                 $field=array("ModelName","Description");
                 $value=array($modelname,$des);
                 $obj->fun_updatedata($table,$field,$value,"ModelID", $modelid);
@@ -183,7 +183,7 @@ require_once('../inc/restrict.php');
                 		</thead>
                 		<?php
                 		//Accessing method fun_displaydata
-                		$Category = $obj->fun_displaydataCon("tblmodel","IsDelete",0);
+                		$Category = $obj->fun_displaydataCon("tbl_model","IsDelete",0);
                 		foreach ($Category as $record){
                 			$modelid = $record['ModelID'];
                 			$modelname = $record['ModelName'];

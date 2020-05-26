@@ -17,15 +17,7 @@
                                             <input type="text"  name="txt_proname" placeholder="productname" class="form-control" id="name" >
                                         </div>
 
-                                        <div class="form-group col-md-6">
-                                            <label for="name" class="col-form-label">Imei Number</label>
-                                            <input type="text"  name="txt_imei" placeholder="Imei Number" class="form-control" id="name" >
-                                        </div>
-
-                                        <div class="form-group col-md-4">
-                                            <label for="des" class="col-form-label">Description</label>
-                                            <input type="text" name="txt_desc" placeholder="Description" class="form-control" id="des" >
-                                        </div>
+                                       
 
                                         <div class="form-group col-md-4">
                                                 <label for="cat" class="col-form-label">Category</label>
@@ -62,14 +54,7 @@
                                                     ?>
                                                 </select>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="unit" class="col-form-label">Unitprice purchase ($)</label>
-                                                <input type="text" name="txt_pricePur" placeholder="Unitpricepurchase" class="form-control" id="unit" >
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="sale" class="col-form-label">Unitprice Sale ($)</label>
-                                                <input type="text" name="txt_priceSale" placeholder="Unitprice Sale" class="form-control" id="sale" >
-                                            </div>
+                                           
 
                                             <div class="form-group col-md-6">
                                                 <label for="status" class="col-form-label">Status</label>

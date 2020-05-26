@@ -51,7 +51,7 @@
                                                 <label for="member" class="col-form-label">Member</label>
                                                 <select name="txtmember" class="form-control" id="member">
                                                     <?php
-                                                        $member = $obj->fun_displaydataCon("tblmember","IsDelete",0);
+                                                        $member = $obj->fun_displaydataCon("tbl_member","IsDelete",0);
                                                         foreach ($member as $item) {
                                                             $memid = $item['MemberID'];
                                                             $memtype = $item['MemberType'];

@@ -193,6 +193,16 @@
 			$this->pro_count = mysqli_num_rows($this->pro_query);
 			return $this->pro_count;
 		}
+		//Select with distince
+		function fun_SelectDistinc($arg_tblname,$field,$arg_field,$arg_value){
+			$this->pro_arr = array();
+			$this->pro_sql = "select DISTINCT($field) from $arg_tblname Where $arg_field = $arg_value";
+			$this->pro_query = mysqli_query($this->fun_link(),$this->pro_sql);
+			while ($this->pro_myrow = mysqli_fetch_assoc($this->pro_query)){
+				array_push($this->pro_arr,$this->pro_myrow);
+			}
+			return $this->pro_arr;
+		}
 
 	}
 ?>

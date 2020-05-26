@@ -5,7 +5,7 @@ session_start();
 	require_once('../inc/class.php');
 //instant object
     $obj = new mycodes;
-require_once('../inc/restrict.php');
+//require_once('../inc/restrict.php');
     
 ?>
 <!DOCTYPE html>
@@ -23,8 +23,9 @@ require_once('../inc/restrict.php');
     <link href="../style1.css" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="./plugins/toastr/css/toastr.min.css" rel="stylesheet">
-
-
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -32,7 +33,7 @@ require_once('../inc/restrict.php');
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
-
+  
 </head>
 
 <body>
@@ -95,29 +96,52 @@ require_once('../inc/restrict.php');
                             <div class="form-group col-md-4">
                                 <label class="col-form-label">ស្វែងរកតាមឈ្មោះទំនិញ</label>
                                 <div class="input-group ">
-                                  <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                    <option selected></option>
-                                    <option></option>
-                                  </select>
+                                    <select name="framework" id="framework" class="selectpicker" data-live-search="true">
+                                        <?php
+                                            $proname = $obj->fun_SelectDistinc("tbl_product","ProductName","IsDelete",0);
+                                            foreach ($proname as $item) {
+                                                $pro_name = $item['ProductName'];              
+                                        ?>
+                                          <option>
+                                                <?php echo $pro_name; ?>
+                                          </option>
+                                           <?php
+                                                }
+                                            ?>
+                                        </select>
                                 </div>
                             </div>
+                            
 
                             <div class="form-group col-md-3">
                                 <label class="col-form-label">ប្រភេទទំនិញ</label>
-                                <div class="input-group ">
-                                  <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                    <option selected></option>
-                                    <option></option>
-                                  </select>
-                                </div>
+                                       <select name="framework" id="framework" class="selectpicker" data-live-search="true">
+                                   
+                                          <?php
+                                            $cate = $obj->fun_SelectDistinc("tbl_category","CategoryName","IsDelete",0);
+                                            foreach ($cate as $item) {
+                                                $cat_name = $item['CategoryName'];              
+                                        ?>
+                                          <option>
+                                                <?php echo $cat_name; ?>
+                                          </option>
+                                           <?php
+                                                }
+                                            ?>
+                                           
+                                        </select>
                             </div>
 
                             <div class="form-group col-md-2">
                                 <label class="col-form-label">ទំហំផ្ទុក</label>
                                 <div class="input-group ">
-                                  <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                                    <option selected></option>
-                                    <option></option>
+                                  <select class="selectpicker " id="inputGroupSelect04">
+                                    <option>16</option>
+                                    <option>32</option>
+                                    <option>64</option>
+                                    <option>128</option>
+                                    <option>256</option>
+                                    <option>512</option>
                                   </select>
                                 </div>
                             </div>
@@ -280,4 +304,15 @@ require_once('../inc/restrict.php');
     </script>
 </body>
 
+ <script> 
+ /* 
+ $(document).ready(function(){  
+      $('.selectpicker').selectpicker();
+ });
+ */
+
+
+
+ </script>
 </html>
+

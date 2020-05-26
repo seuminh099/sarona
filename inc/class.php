@@ -13,7 +13,7 @@
 		//check Existing Username and password
 		function fun_checkuserpwd($arg_user,$arg_pwd){
 			//create Sql statement
-			$this->pro_sql ="SELECT * FROM tblstaff WHERE Username='$arg_user' and Password='$arg_pwd'";
+			$this->pro_sql ="SELECT * FROM tbl_staff WHERE UserName='$arg_user' and Password='$arg_pwd'";
 			//sent sql statement to server
 			$this->pro_query = mysqli_query($this->fun_link(),$this->pro_sql);
 			$this->pro_count = mysqli_num_rows($this->pro_query);
@@ -47,7 +47,7 @@
 			return $this->pro_arr;
 		}
 		 function fun_countproduct($arg_catid){
-			$this->pro_sql="SELECT * FROM tblproduct WHERE CategoryID=$arg_catid";
+			$this->pro_sql="SELECT * FROM tbl_product WHERE CategoryID=$arg_catid";
 			$this->pro_query=mysqli_query($this->fun_link(),$this->pro_sql);
 			$this->pro_count= mysqli_num_rows($this->pro_query);
 			return $this->pro_count;
@@ -62,14 +62,14 @@
 
 		/* count product for update */
 		 function fun_countpro($arg_proname,$arg_status){
-			$this->pro_sql = "select * from tblproduct where ProductName = '$arg_proname' And Status = '$arg_status' ";
+			$this->pro_sql = "select * from tbl_product where ProductName = '$arg_proname' And Status = '$arg_status' ";
 			$this->pro_query = mysqli_query($this->fun_link(),$this->pro_sql);
 			$this->pro_count = mysqli_num_rows($this->pro_query);
 			return $this->pro_count;
 		}
 		/* count product for update */
 		 function fun_countproupdate($arg_proname,$arg_id,$arg_status){
-			$this->pro_sql = "select * from tblproduct where ProductName = '$arg_proname' And ProductID = '$arg_id' And Status = '$arg_status' ";
+			$this->pro_sql = "select * from tbl_product where ProductName = '$arg_proname' And ProductID = '$arg_id' And Status = '$arg_status' ";
 			$this->pro_query = mysqli_query($this->fun_link(),$this->pro_sql);
 			$this->pro_count = mysqli_num_rows($this->pro_query);
 			return $this->pro_count;

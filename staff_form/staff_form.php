@@ -213,7 +213,7 @@ require_once('../inc/restrict.php');
                         $phone = $row['Phone'];
                         $email = $row['Email'];
                         $photo = $row['Photo'];
-                        $username = $row['Username'];
+                        $username = $row['UserName'];
                         $password = $row['Password'];
 
                     ?>

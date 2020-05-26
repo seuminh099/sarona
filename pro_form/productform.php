@@ -124,12 +124,10 @@ require_once('../inc/restrict.php');
                 /*------------------------------------------------- Test add new button --------------------------------------*/
                 if(isset($_REQUEST['btn_addnew'])){
                     $proname = $_REQUEST['txt_proname'];
-                    $imei = $_REQUEST['txt_imei'];
-                    $desc = $_REQUEST['txt_desc'];
+                   
                     $cat_id = $_REQUEST['txt_catname'];
                     $model_id = $_REQUEST['txt_modelname'];
-                    $pricepur = $_REQUEST['txt_pricePur'];
-                    $pricesale = $_REQUEST['txt_priceSale'];
+                    
                     $Status = $_REQUEST['txt_status'];
                     if($_FILES['txtphoto']['tmp_name']){
                         $Logo = $obj->f_upload_img('txtphoto',100,'images');
@@ -138,7 +136,7 @@ require_once('../inc/restrict.php');
                     }
                     
                     $result1 = $obj->fun_countpro($proname,$Status);
-                    $result2 = $obj->fun_checkExistingData($imei,"tbl_product","Imei");
+                    $result2 = $obj->fun_checkExistingData("tbl_product");
                     if($result1 >0){
                 ?>
                     <script type="text/javascript">toastr.error('<?php echo $proname?> is Exsting')</script>
@@ -146,8 +144,8 @@ require_once('../inc/restrict.php');
                     }else{
                           if($result2 == false){
                             $tblname = "tbl_product";
-                             $fields = array("ProductName","Imei","Description","CategoryID","ModelID","UnitPrice_Purchase","UnitPrice_Sale","Photo","Status");
-                             $values = array($proname,$imei,$desc,$cat_id,$model_id,$pricepur,$pricesale,$Logo,$Status);
+                             $fields = array("ProductName","CategoryID","ModelID","Photo","Status");
+                             $values = array($proname,$cat_id,$model_id,$Logo,$Status);
                              $obj->fun_insertdata($tblname,$fields,$values);
                 ?>
                              <script type="text/javascript">toastr.success('Insert successfully......')</script>
@@ -167,12 +165,10 @@ require_once('../inc/restrict.php');
                 if(isset($_REQUEST['btnupdate'])){
                     $proid = $_REQUEST['txt_id'];
                     $proname = $_REQUEST['txt_proname'];
-                    $imei = $_REQUEST['txt_imei'];
-                    $desc = $_REQUEST['txt_desc'];
+                    
                     $cat_id = $_REQUEST['txt_catname'];
                     $model_id = $_REQUEST['txt_modelname'];
-                    $pricepur = $_REQUEST['txt_pricePur'];
-                    $pricesale = $_REQUEST['txt_priceSale'];
+                    
                     $Status = $_REQUEST['txt_status'];
                     $oldphoto = $_REQUEST['txtoldphoto'];
                     if($_FILES['txtphoto']['tmp_name']){
@@ -183,7 +179,7 @@ require_once('../inc/restrict.php');
 
                     $result = $obj->fun_countproupdate($proname,$proid,$Status);
                     $result1 = $obj->fun_countpro($proname,$Status);
-                    $result2 = $obj->fun_checkData("tbl_product","Imei","ProductID",$imei,$proid);
+                    $result2 = $obj->fun_checkData("tbl_product","ProductID",$proid);
 
                     if((($result == 1 ) && ($result1 == 1)) || (($result == 0 ) && ($result1 == 0))){
                         if($result2){
@@ -193,8 +189,8 @@ require_once('../inc/restrict.php');
                     <?php
                         }else{
                             $tblname = "tbl_product";
-                            $fields = array("ProductName","Imei","Description","CategoryID","ModelID","UnitPrice_Purchase","UnitPrice_Sale","Photo","Status");
-                            $values = array($proname,$imei,$desc,$cat_id,$model_id,$pricepur,$pricesale,$Logo,$Status);
+                            $fields = array("ProductName","CategoryID","ModelID","Photo","Status");
+                            $values = array($proname,$cat_id,$model_id,$Logo,$Status);
                             $obj->fun_updatedata($tblname,$fields,$values,"ProductID",$proid);
                             ?>
                             <!-- Alert Success -->
@@ -217,13 +213,10 @@ require_once('../inc/restrict.php');
                 		<thead class="table-info">
                 			<tr class="font-weight-bolder">
                                 <th>Product Name</th>
-                                <th>Imei</th>
-                                <th>Description</th>
+                               
                                 <th>Category Name</th>
                                 <th>Model Name</th>
-                                <th>Qty</th>
-                                <th>Unit Price Purchase</th>
-                                <th>Unit Price Sale</th>
+                            
                                 <th>Status </th>
                                 <th>Photo</th>
                                 <th></th>
@@ -238,31 +231,23 @@ require_once('../inc/restrict.php');
                             if ($key_catid== $catid) {
                                 $proid = $record['ProductID'];
                                 $proname = $record['ProductName'];
-                                $imei = $record['Imei'];
-                                $desc = $record['Description'];
-
+                               
                                 $category = $obj->fun_lookup("tbl_category","CategoryID",$catid);
                                 $catname = $category['CategoryName'];
 
                                 $modelid = $record['ModelID'];
                                 $model = $obj->fun_lookup("tbl_model","ModelID",$modelid);
                                 $modelname = $model['ModelName'];
-
-                                $qty = $record['Qty'];
-                                $unitpricepurchase = $record['UnitPrice_Purchase'];
-                                $unitpricesale = $record['UnitPrice_Sale'];
+                               
                                 $Status = $record['Status'];
                                 $photo = $record['Photo'];
                         ?>
                 			<tr >
                                 <td><?php echo $proname; ?></td>
-                                <td><?php echo $imei; ?></td>
-                                <td><?php echo $desc; ?></td>
+                               
                                 <td><?php echo $catname; ?></td>
                                 <td><?php echo $modelname; ?></td>
-                                <td><?php echo $qty; ?></td>
-                                <td><?php echo $unitpricepurchase; ?></td>
-                                <td><?php echo $unitpricesale; ?></td>
+                                
                                 <td><?php echo $Status; ?></td>
                                 <td><img src="images/<?php echo $photo;?>" width="50px"></td>
                 				<td>
@@ -302,16 +287,7 @@ require_once('../inc/restrict.php');
                                             <input type="text" name="txt_proname" class="form-control" id="catname" value="<?php echo $proname;?>">
                                         </div>
 
-                                         <div class="form-group col-md-3">
-                                            <label for="pro" class="col-form-label">Imei Number</label>
-                                            <input type="text" name="txt_imei" class="form-control" id="pro" value="<?php echo $imei;?>">
-                                        </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="des" class="col-form-label">Description</label>
-                                            <input type="text" name="txt_desc" class="form-control" id="des" value="<?php echo $desc;?>">
-                                        </div>
-
+                                        
                                         <div class="form-group col-md-6">
                                                 <label for="Sex" class="col-form-label">Category</label>
                                                 <select class="form-control" id="Sex" name="txt_catname" value="<?php echo $catid; ?>">
@@ -348,14 +324,7 @@ require_once('../inc/restrict.php');
                                                 </select>
                                                 
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="unit" class="col-form-label">Unitprice purchase</label>
-                                                <input type="text" name="txt_pricePur" class="form-control" id="unit" value="<?php echo $unitpricepurchase;?>">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="sale" class="col-form-label">Unitprice Sale</label>
-                                                <input type="text" name="txt_priceSale" class="form-control" id="sale" value="<?php echo $unitpricesale;?>">
-                                            </div>
+                                           
                                            <div class="form-group col-md-6">
                                                 <label for="status" class="col-form-label">Status</label>
                                                 <select name="txt_status" class="form-control">

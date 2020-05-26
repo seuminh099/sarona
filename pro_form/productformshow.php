@@ -234,9 +234,8 @@ session_start();
                                 $modelname = $model['ModelName'];
 
                                 
-                               
-                                $Status = $record['Status'];
                                 $photo = $record['Photo'];
+                                $Status = $record['Status'];
                         ?>
                 			<tr >
                                 <td><?php echo $proname; ?></td>

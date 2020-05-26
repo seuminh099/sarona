@@ -157,6 +157,7 @@ session_start();
                                     $photo = $oldphoto;
                                 }
                                 $member = $_REQUEST['txtmember'];
+
                                     $table = "tbl_customer";
                                     $fields = array("CustomerName","Sex","DOB","POB","JobTitle","Address","Phone","Email","Photo","MemberID");
                                     $values = array($cusname,$sex,$dob,$pob,$jobtitle,$address,$phone,$email,$photo,$member);
@@ -203,7 +204,7 @@ session_start();
                             $photo= $record['Photo'];
                             $member= $record['MemberID'];
 
-                            $getmember=$obj->fun_lookup("tblmember","MemberID",$member);
+                            $getmember=$obj->fun_lookup("tbl_member","MemberID",$member);
                             $member_id=$getmember['MemberID'];
                             $member_type=$getmember['MemberType'];
                 		?>

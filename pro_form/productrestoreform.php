@@ -109,44 +109,35 @@ require_once('../inc/restrict.php');
                     $countpurchase = $obj->fun_count("tbl_purchase_detail","ProductID",$key_proid);
                     //count product in tblsaledetail
                     $countsale = $obj->fun_count("tbl_sale_detail","ProductID",$key_proid);
-                    $result = $obj->fun_countpro2con("tbl_product","Qty","ProductID","1",$key_proid);
                     //ber sern jea in $countpurchase == 0 and $countsale == 0 ban ney tha product ng ot torn ban louk ban tinh ey te jing delete ban
                     if(($countpurchase == 0 ) && ($countsale == 0)){
+                    
+                        $row = $obj->fun_lookup("tbl_product","ProductID",$key_proid);
+                        $logo = $row['Photo'];
+                        $table = "tbl_product";
+                        $fieldid = "ProductID";
+                        
+                        $countprowithimg = $obj->fun_count("tbl_product","Photo",$logo);
 
-                        if($result == 1) {
+                        if($countprowithimg == 1){
+                        //Access to methoad fundeletedata and fundeleteimage
+                        $obj->fun_deleteimage($logo);
+                        $obj->fun_deletedata($table,$fieldid,$key_proid);
                         ?>
-                            <script type="text/javascript">toastr.error('Qty > O')</script>
+                        <script type="text/javascript">toastr.success('Delete successfully')</script>
                         <?php
                         }else{
-
-                            $row = $obj->fun_lookup("tbl_product","ProductID",$key_proid);
-                            $logo = $row['Photo'];
-                            $table = "tbl_product";
-                            $fieldid = "ProductID";
-                            
-                            $countcatewithimg = $obj->fun_count("tbl_category","Photo",$logo);
-
-                            if($countcatewithimg == 1){
-                            //Access to methoad fundeletedata and fundeleteimage
-                            $obj->fun_deleteimage($logo);
                             $obj->fun_deletedata($table,$fieldid,$key_proid);
-                            ?>
+                        ?>
                             <script type="text/javascript">toastr.success('Delete successfully')</script>
-                            <?php
-                            }else{
-                                $obj->fun_deletedata($table,$fieldid,$key_proid);
-                            ?>
-                                <script type="text/javascript">toastr.success('Delete successfully')</script>
-                            <?php           
-                            }
-                            
+                        <?php           
                         }
                     }else{
-                    ?>
+                ?>
                          <script type="text/javascript">toastr.error('you can not delete this product')</script>
                     <?php
                     }
-    }
+                }
 
                     //Test restore button
                  if(isset($_REQUEST['ProductID'])){
@@ -169,13 +160,8 @@ require_once('../inc/restrict.php');
                 		<thead class="table-info">
                 			<tr class="font-weight-bolder">
                                 <th>Product Name</th>
-                                <th>Imei</th>
-                                <th>Description</th>
                                 <th>Category Name</th>
                                 <th>Model Name</th>
-                                <th>Qty</th>
-                                <th>Unit Price Purchase</th>
-                                <th>Unit Price Sale</th>
                                 <th>Status </th>
                                 <th>Photo</th>
                                 <th></th>
@@ -189,31 +175,19 @@ require_once('../inc/restrict.php');
                                 $catid = $record['CategoryID'];
                                 $proid = $record['ProductID'];
                                 $proname = $record['ProductName'];
-                                $imei = $record['Imei'];
-                                $desc = $record['Description'];
-
                                 $category = $obj->fun_lookup("tbl_category","CategoryID",$catid);
                                 $catname = $category['CategoryName'];
 
                                 $modelid = $record['ModelID'];
                                 $model = $obj->fun_lookup("tbl_model","ModelID",$modelid);
                                 $modelname = $model['ModelName'];
-
-                                $qty = $record['Qty'];
-                                $unitpricepurchase = $record['UnitPrice_Purchase'];
-                                $unitpricesale = $record['UnitPrice_Sale'];
                                 $Status = $record['Status'];
                                 $photo = $record['Photo'];
                         ?>
                 			<tr >
-                                <td><?php echo $proname; ?></td>
-                                <td><?php echo $imei; ?></td>
-                                <td><?php echo $desc; ?></td>
+                                <td><?php echo $proname; ?></td>  
                                 <td><?php echo $catname; ?></td>
                                 <td><?php echo $modelname; ?></td>
-                                <td><?php echo $qty; ?></td>
-                                <td><?php echo $unitpricepurchase; ?></td>
-                                <td><?php echo $unitpricesale; ?></td>
                                 <td><?php echo $Status; ?></td>
                                 <td><img src="images/<?php echo $photo;?>" width="50px"></td>
                 				<td>
@@ -235,9 +209,9 @@ require_once('../inc/restrict.php');
                 </form>        
                 <!-- End data Table -->   
 
-            <!-- Bottun Add new  -->
+            <!-- Restore All  -->
             <a href="#" class="btn btn-primary">Restore All</a>
-            <!-- Bottun Add new  --> 
+            <!-- Bottun Back  --> 
             <a href="productformshow.php" class="btn btn-primary">Back</a>
             <!-- Modal Addnew category-->
   

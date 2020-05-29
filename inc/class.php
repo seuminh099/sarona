@@ -61,8 +61,8 @@
 		}
 
 		/* count product for update */
-		 function fun_countpro($arg_proname,$arg_status){
-			$this->pro_sql = "select * from tbl_product where ProductName = '$arg_proname' And Status = '$arg_status' ";
+		 function fun_countpro($arg_proname){
+			$this->pro_sql = "select * from tbl_product where ProductName = '$arg_proname'";
 			$this->pro_query = mysqli_query($this->fun_link(),$this->pro_sql);
 			$this->pro_count = mysqli_num_rows($this->pro_query);
 			return $this->pro_count;

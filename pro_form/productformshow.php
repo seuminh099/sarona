@@ -93,13 +93,104 @@ session_start();
             <!-- row -->
             <div class="container-fluid" id="load-products">
                 <!-- This is for code -->
-                    
+                <h3 ><center>បញ្ជីមុខទំនិញ</center></h3>
+                <form>
+                        <!-- Row 1 ------------- -->
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">ស្វែងរកតាមឈ្មោះទំនិញ</label>
+                                <div class="input-group ">
+                                    <select name="framework" id="framework" class="selectpicker" data-live-search="true">
+                                        <?php
+                                            $proname = $obj->fun_SelectDistinc("tbl_product","ProductName","IsDelete",0);
+                                            foreach ($proname as $item) {
+                                                $pro_name = $item['ProductName'];              
+                                        ?>
+                                          <option>
+                                                <?php echo $pro_name; ?>
+                                          </option>
+                                           <?php
+                                                }
+                                            ?>
+                                        </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">ប្រភេទទំនិញ</label>
+                                       <select name="framework" id="framework" class="selectpicker" data-live-search="true">
+                                   
+                                          <?php
+                                            $cate = $obj->fun_SelectDistinc("tbl_category","CategoryName","IsDelete",0);
+                                            foreach ($cate as $item) {
+                                                $cat_name = $item['CategoryName'];              
+                                        ?>
+                                          <option>
+                                                <?php echo $cat_name; ?>
+                                          </option>
+                                           <?php
+                                                }
+                                            ?> 
+                                        </select>
+                            </div>
+
+                            <div class="form-group col-md-3">
+                                <label class="col-form-label">ឈ្មោះក្រុមហ៊ុន</label>
+                                <div class="input-group ">
+                                  <select name="framework" id="framework" class="selectpicker" data-live-search="true">
+                                   
+                                          <?php
+                                            $model = $obj->fun_SelectDistinc("tbl_model","ModelName","IsDelete",0);
+                                            foreach ($model as $item) {
+                                                $model_name = $item['ModelName'];              
+                                        ?>
+                                          <option>
+                                                <?php echo $model_name; ?>
+                                          </option>
+                                           <?php
+                                                }
+                                            ?>
+                                        </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-2">
+                                <div class="form-row-1">
+                                    <div class="form-group col-md">
+                                        
+                                    </div>
+                                    <div class="form-group col-md">
+                                        
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <button type="button" class="btn btn-primary">ស្វែងរក</button>
+                                    </div>
+                                </div>
+                            </div>  
+
+                            <div class="form-row">
+                                <div class="form-group col-md">                               
+                                    <!-- Bottun Add new  -->
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addnewproduct" data-whatever="@mdo">
+                                        បន្ថែមថ្មី
+                                    </button>
+                                </div>
+                                <div class="form-group col-md">                               
+                                    <!-- Bottun Restore  --> 
+                                    <a href="productrestoreform.php" class="btn btn-primary">Restore</a>
+                                </div>    
+                            </div>                
+                        </div>
+                    </form>
     			<!-- <a href="categoryaddform.php">Add New Category</a> -->
                 <!-- In data Table -->                                   
                 <form method="post" action="" enctype="multipart/form-data">
-                    <h3 ><center>List of Product</center></h3>
+                    
                     <!-- <table id="example" class="table table-striped table-bordered" style="width:100%" > -->
-                	<table cellpadding="5px" cellspacing="0" align="center" border="1px" class="table table-hover ">
+                	<table align="center" class="table table-hover ">
     		<?php
                 //Test Delete Button
                 if(isset($_REQUEST['ProductID'])){
@@ -117,40 +208,29 @@ session_start();
                 //Test add new button
                 if(isset($_REQUEST['btn_addnew'])){
                     $proname = $_REQUEST['txt_proname'];
-                   
                     $cat_id = $_REQUEST['txt_catname'];
                     $model_id = $_REQUEST['txt_modelname'];
-                   
                     $Status = $_REQUEST['txt_status'];
                     if($_FILES['txtphoto']['tmp_name']){
                         $Logo = $obj->f_upload_img('txtphoto',100,'images');
                     }else{
                         $Logo = "default.jpg";
                     }
-                    
-                    $result1 = $obj->fun_countpro($proname,$Status);
-                    $result2 = $obj->fun_checkExistingData("tbl_product");
-                    if($result1 >0){
-                ?>
-                    <script type="text/javascript">toastr.error('<?php echo $proname?> is Exsting')</script>
+                    $count_pro = $obj->fun_countpro($proname);
+                    if($count_pro > 0){
+                 ?>
+                    <script type="text/javascript">toastr.error('Product Name is existing')</script>
                 <?php
                     }else{
-                          if($result2 == false){
-                            $tblname = "tbl_product";
-                             $fields = array("ProductName","CategoryID","ModelID","Photo","Status");
-                             $values = array($proname,$cat_id,$model_id,$Logo,$Status);
-                             $obj->fun_insertdata($tblname,$fields,$values);
+                        $tblname = "tbl_product";
+                        $fields = array("ProductName","CategoryID","ModelID","Photo","Status");
+                        $values = array($proname,$cat_id,$model_id,$Logo,$Status);
+                        $obj->fun_insertdata($tblname,$fields,$values);
                 ?>
-                             <script type="text/javascript">toastr.success('Insert successfully......')</script>
-                <?php
-                             //header('location:productformshow.php');
-                            //ob_end_flush(); 
-                        }else{
-                        ?>
-                            <script type="text/javascript">toastr.error('<?php echo $imei?> is Exsting')</script>
-                        <?php
-                        }    
-                    }
+                    <script type="text/javascript">toastr.success('Insert successfully......')</script>
+                
+                <?php 
+                    }  
                 }
                 //End Test Add New Button
 
@@ -158,11 +238,8 @@ session_start();
                 if(isset($_REQUEST['btnupdate'])){
                     $proid = $_REQUEST['txt_id'];
                     $proname = $_REQUEST['txt_proname'];
-                    
-                   
                     $cat_id = $_REQUEST['txt_catname'];
                     $model_id = $_REQUEST['txt_modelname'];
-                   
                     $Status = $_REQUEST['txt_status'];
                     $oldphoto = $_REQUEST['txtoldphoto'];
                     if($_FILES['txtphoto']['tmp_name']){
@@ -171,15 +248,15 @@ session_start();
                         $Logo = $oldphoto;
                     }
 
-                    $result = $obj->fun_countproupdate($proname,$proid,$Status);
-                    $result1 = $obj->fun_countpro($proname,$Status);
-                    $result2 = $obj->fun_checkData("tbl_product","ProductID",$proid);
-
-                    if((($result == 1 ) && ($result1 == 1)) || (($result == 0 ) && ($result1 == 0))){
-                        if($result2){
+                    $result = $obj->fun_checkData("tbl_product","ProductName","ProductID",$proname,$proid);
+                    if($result){
                     ?>
                            <!-- Alert Error -->
+<<<<<<< HEAD
                             <!--<script type="text/javascript">toastr.error('<?php echo $imei?> is Exsting')</script>-->
+=======
+                            <script type="text/javascript">toastr.error('<?php echo $proname?> is Exsting')</script>
+>>>>>>> ff1c67e7de33b48b1cb58dd59933fe3903e70c43
                     <?php
                         }else{
                             $tblname = "tbl_product";
@@ -190,26 +267,21 @@ session_start();
                             <!-- Alert Success -->
                                 <script type="text/javascript">toastr.success('Update successfully')</script>
                         <?php
-                            }
-                    }else{
-
-                        ?>
-                          <!-- Alert Error -->
-                            <script type="text/javascript">toastr.error('<?php echo $proname?> is Exsting')</script>
-                <?php
                     }
                 }
                 ?>
 
-                		<thead class="table-info font-weight-bolder">
+                		<thead>
                 			<tr class="">
                                 <th>ឈ្មោះទំនិញ</th>
-                            
-                                
                                 <th>ប្រភេទទំនិញ</th>
                                 <th>ឈ្មោះក្រុមហ៊ុន</th>
+<<<<<<< HEAD
                             
                                 <th>គុណភាព</th>
+=======
+                                <th>សំគាល់</th>
+>>>>>>> ff1c67e7de33b48b1cb58dd59933fe3903e70c43
                                 <th>រូបភាព</th>
                                 <th></th>
                                 <th></th>
@@ -247,12 +319,12 @@ session_start();
                                 <td><img src="images/<?php echo $photo;?>" width="50px"></td>
                 				<td>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<?php echo "u".$proid;?>"> 
-                                        Update
+                                        កែប្រែ
                                     </button>
                                 </td>
                 				<td>
                                     <a href="productformshow.php?ProductID=<?php echo $proid;?>" 
-                                           class="btn btn-danger delete" id="delete">Delete</a>
+                                           class="btn btn-danger delete" id="delete">លុប</a>
                                 </td>
                 			</tr>
                             
@@ -323,10 +395,7 @@ session_start();
 
                                              <div class="form-group col-md-6">
                                                 <label for="status" class="col-form-label">Status</label>
-                                                <select name="txt_status" class="form-control">
-                                                <option value="New">New</option>
-                                                <option value="Old">old</option>
-                                            </select>
+                                                <input type="text" class="form-control" name="txt_status" value="<?php echo($Status) ?>">
                                             </div>
                                     
                                             <div class="form-group col-md-6">
@@ -359,14 +428,6 @@ session_start();
                 	</table>
                 </form>        
                 <!-- End data Table -->   
-
-            <!-- Bottun Add new  -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addnewproduct" data-whatever="@mdo">
-                Add New
-            </button>
-            <!-- Bottun Add new  --> 
-
-            <a href="productrestoreform.php" class="btn btn-primary">Restore</a>
 
             <!-- Modal Addnew category-->
             <?php 

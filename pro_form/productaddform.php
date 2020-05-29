@@ -58,10 +58,7 @@
 
                                             <div class="form-group col-md-6">
                                                 <label for="status" class="col-form-label">Status</label>
-                                                <select name="txt_status" class="form-control">
-                                                <option value="New">New</option>
-                                                <option value="Old">old</option>
-                                            </select>
+                                                <input type="text" name="txt_status" class="form-control" placeholder="Note">
                                             </div>
 
                                             <div class="form-group col-md-6">

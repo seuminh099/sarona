@@ -252,11 +252,7 @@ session_start();
                     if($result){
                     ?>
                            <!-- Alert Error -->
-<<<<<<< HEAD
-                            <!--<script type="text/javascript">toastr.error('<?php echo $imei?> is Exsting')</script>-->
-=======
                             <script type="text/javascript">toastr.error('<?php echo $proname?> is Exsting')</script>
->>>>>>> ff1c67e7de33b48b1cb58dd59933fe3903e70c43
                     <?php
                         }else{
                             $tblname = "tbl_product";
@@ -276,12 +272,7 @@ session_start();
                                 <th>ឈ្មោះទំនិញ</th>
                                 <th>ប្រភេទទំនិញ</th>
                                 <th>ឈ្មោះក្រុមហ៊ុន</th>
-<<<<<<< HEAD
-                            
-                                <th>គុណភាព</th>
-=======
                                 <th>សំគាល់</th>
->>>>>>> ff1c67e7de33b48b1cb58dd59933fe3903e70c43
                                 <th>រូបភាព</th>
                                 <th></th>
                                 <th></th>

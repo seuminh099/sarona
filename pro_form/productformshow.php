@@ -179,7 +179,7 @@ session_start();
                         if($result2){
                     ?>
                            <!-- Alert Error -->
-                            <script type="text/javascript">toastr.error('<?php echo $imei?> is Exsting')</script>
+                            <!--<script type="text/javascript">toastr.error('<?php echo $imei?> is Exsting')</script>-->
                     <?php
                         }else{
                             $tblname = "tbl_product";
@@ -208,8 +208,7 @@ session_start();
                                 
                                 <th>ប្រភេទទំនិញ</th>
                                 <th>ឈ្មោះក្រុមហ៊ុន</th>
-                               
-                               
+                            
                                 <th>គុណភាព</th>
                                 <th>រូបភាព</th>
                                 <th></th>
@@ -240,7 +239,6 @@ session_start();
                 			<tr >
                                 <td><?php echo $proname; ?></td>
                                
-                                
                                 <td><?php echo $catname; ?></td>
                                 <td><?php echo $modelname; ?></td>
                                 

@@ -94,7 +94,7 @@ session_start();
                         <!-- Row 1 ------------- -->
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label class="col-form-label">ស្វែងរកតាមឈ្មោះទំនិញ</label>
+                                <label class="col-form-label headertitle">ស្វែងរកតាមឈ្មោះទំនិញ</label>
                                 <div class="input-group ">
                                     <select name="framework" id="framework" class="selectpicker" data-live-search="true">
                                         <?php
@@ -113,7 +113,7 @@ session_start();
                             </div>
                             
                             <div class="form-group col-md-3">
-                                <label class="col-form-label">ប្រភេទទំនិញ</label>
+                                <label class="col-form-label headertitle">ប្រភេទទំនិញ</label>
                                        <select name="framework" id="framework" class="selectpicker" data-live-search="true">
                                    
                                           <?php
@@ -131,7 +131,7 @@ session_start();
                             </div>
 
                             <div class="form-group col-md-2">
-                                <label class="col-form-label">ទំហំផ្ទុក</label>
+                                <label class="col-form-label headertitle">ទំហំផ្ទុក</label>
                                 <div class="input-group ">
                                   <select class="selectpicker" id="inputGroupSelect04" data-live-search="true">
                                     <option>16</option>
@@ -145,7 +145,7 @@ session_start();
                             </div>
 
                             <div class="form-group col-md-3">
-                                <label class="col-form-label">កូដទំនិញ</label>
+                                <label class="col-form-label headertitle">កូដទំនិញ</label>
                                 <div class="input-group ">
                                   <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
                                     <option selected></option>
@@ -158,7 +158,7 @@ session_start();
                         <!-- Row 2 ------------- -->
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label class="col-form-label">ស្វែងរកតាមវិក្ក័យប័ត្រ</label>
+                                <label class="col-form-label headertitle">ស្វែងរកតាមវិក្ក័យប័ត្រ</label>
                                 <div class="input-group ">
                                   <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
                                     <option selected></option>
@@ -168,21 +168,21 @@ session_start();
                             </div>
 
                             <div class="form-group col-md-3">
-                                <label class="col-form-label">ថ្ងៃខែនាំចូល</label>
+                                <label class="col-form-label headertitle">ថ្ងៃខែនាំចូល</label>
                                 <div class="input-group ">
                                   <input type="date" name="txtaddress" class="form-control" id="catname" >
                                 </div>
                             </div>
 
                             <div class="form-group col-md-3">
-                                <label class="col-form-label">ដល់ថ្ងៃទី</label>
+                                <label class="col-form-label headertitle">ដល់ថ្ងៃទី</label>
                                 <div class="input-group ">
                                   <input type="date" name="txtaddress" class="form-control" id="catname" >
                                 </div>
                             </div>
 
                             <div class="form-group col-md-3">
-                                <label class="col-form-label">អ្នកផ្គត់ផ្គង់</label>
+                                <label class="col-form-label headertitle">អ្នកផ្គត់ផ្គង់</label>
                                 <div class="input-group ">
                                   <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
                                     <option selected></option>

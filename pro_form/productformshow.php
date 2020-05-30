@@ -93,12 +93,12 @@ session_start();
             <!-- row -->
             <div class="container-fluid" id="load-products">
                 <!-- This is for code -->
-                <h3 ><center>បញ្ជីមុខទំនិញ</center></h3>
+                <h3 class="headertitle"><center>បញ្ជីមុខទំនិញ</center></h3>
                 <form>
                         <!-- Row 1 ------------- -->
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label class="col-form-label">ស្វែងរកតាមឈ្មោះទំនិញ</label>
+                                <label class="col-form-label headertitle">ស្វែងរកតាមឈ្មោះទំនិញ</label>
                                 <div class="input-group ">
                                     <select name="framework" id="framework" class="selectpicker" data-live-search="true">
                                         <?php
@@ -117,7 +117,7 @@ session_start();
                             </div>
                             
                             <div class="form-group col-md-3">
-                                <label class="col-form-label">ប្រភេទទំនិញ</label>
+                                <label class="col-form-label headertitle">ប្រភេទទំនិញ</label>
                                        <select name="framework" id="framework" class="selectpicker" data-live-search="true">
                                    
                                           <?php
@@ -135,7 +135,7 @@ session_start();
                             </div>
 
                             <div class="form-group col-md-3">
-                                <label class="col-form-label">ឈ្មោះក្រុមហ៊ុន</label>
+                                <label class="col-form-label headertitle">ឈ្មោះក្រុមហ៊ុន</label>
                                 <div class="input-group ">
                                   <select name="framework" id="framework" class="selectpicker" data-live-search="true">
                                    
@@ -174,13 +174,13 @@ session_start();
                             <div class="form-row">
                                 <div class="form-group col-md">                               
                                     <!-- Bottun Add new  -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addnewproduct" data-whatever="@mdo">
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addnewproduct" data-whatever="@mdo">
                                         បន្ថែមថ្មី
                                     </button>
                                 </div>
                                 <div class="form-group col-md">                               
                                     <!-- Bottun Restore  --> 
-                                    <a href="productrestoreform.php" class="btn btn-primary">Restore</a>
+                                    <a href="productrestoreform.php" class="btn btn-sm btn-primary">Restore</a>
                                 </div>    
                             </div>                
                         </div>
@@ -268,14 +268,14 @@ session_start();
                 ?>
 
                 		<thead>
-                			<tr class="">
+                			<tr class="headertable">
                                 <th>ឈ្មោះទំនិញ</th>
                                 <th>ប្រភេទទំនិញ</th>
                                 <th>ឈ្មោះក្រុមហ៊ុន</th>
                                 <th>សំគាល់</th>
                                 <th>រូបភាព</th>
-                                <th></th>
-                                <th></th>
+                                <th>សកម្មភាព</th>
+                                
                 	       </tr>
                 		</thead>
                 		<?php
@@ -285,17 +285,12 @@ session_start();
                             $catid = $record['CategoryID'];
                                 $proid = $record['ProductID'];
                                 $proname = $record['ProductName'];
-                                
-                               
-
                                 $category = $obj->fun_lookup("tbl_category","CategoryID",$catid);
                                 $catname = $category['CategoryName'];
 
                                 $modelid = $record['ModelID'];
                                 $model = $obj->fun_lookup("tbl_model","ModelID",$modelid);
-                                $modelname = $model['ModelName'];
-
-                                
+                                $modelname = $model['ModelName'];         
                                 $photo = $record['Photo'];
                                 $Status = $record['Status'];
                         ?>
@@ -309,13 +304,11 @@ session_start();
                                 <td><?php echo $Status; ?></td>
                                 <td><img src="images/<?php echo $photo;?>" width="50px"></td>
                 				<td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<?php echo "u".$proid;?>"> 
+                                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#<?php echo "u".$proid;?>"> 
                                         កែប្រែ
                                     </button>
-                                </td>
-                				<td>
                                     <a href="productformshow.php?ProductID=<?php echo $proid;?>" 
-                                           class="btn btn-danger delete" id="delete">លុប</a>
+                                           class="btn btn-sm btn-danger delete" id="delete">លុប</a>
                                 </td>
                 			</tr>
                             

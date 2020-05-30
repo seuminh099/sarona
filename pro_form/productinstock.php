@@ -126,15 +126,14 @@ session_start();
                                           </option>
                                            <?php
                                                 }
-                                            ?>
-                                           
+                                            ?>  
                                         </select>
                             </div>
 
                             <div class="form-group col-md-2">
                                 <label class="col-form-label">ទំហំផ្ទុក</label>
                                 <div class="input-group ">
-                                  <select class="selectpicker " id="inputGroupSelect04">
+                                  <select class="selectpicker" id="inputGroupSelect04" data-live-search="true">
                                     <option>16</option>
                                     <option>32</option>
                                     <option>64</option>
@@ -216,53 +215,61 @@ session_start();
                         </tr>
                       </thead>
                       <tbody>
+                        <?php
+                            $purchase = $obj->fun_displaydata("vpurchase");
+                            $i = 0;
+                            $totalQty = 0;
+                            $totalQty = 0;
+                            $totalPrice = 0;
+                            foreach ($purchase as $item) {
+                                $invoice = $item['Invioce'];
+                                $date = $item['PurchaseDate'];
+                                $Imei = $item['Imei'];
+                                $ProductName = $item['ProductName'];
+                                $CategoryName = $item['CategoryName'];
+                                $PurchaseQty = $item['PurchaseQty'];
+                                $PurchasePrice = $item['PurchasePrice'];
+                                $subPrice = $PurchaseQty * $PurchasePrice;
+                                $SalePrice = $item['SalePrice'];
+                                $StorageName = $item['StorageName'];
+                                $UserName = $item['UserName'];
+                                $SupplierName = $item['SupplierName'];
+                                $ModelName = $item['ModelName'];
+                                $i = $i + 1;
+                                $totalQty = $totalQty + $PurchaseQty;
+         ;                      $totalPrice =$totalPrice + $subPrice;
+
+                        ?>
                         <tr>
-                          <th scope="row">1</th>
-                          <td>BD-001</td>
-                          <td>15-May-20</td>
-                          <td>0000001</td>
-                          <td>iPhone 11 Pro </td>
-                          <td>Phone</td>
-                          <td>1</td>
-                          <td>1100</td>
-                          <td>1100</td>
-                          <td>1200</td>
-                          <td>32GB</td>
-                          <td>Admin</td>
-                          <td>Dara</td>
-                          <td>Iphone</td>
+                          <th scope="row"><?php echo $i; ?></th>
+                          <td><?php echo $invoice; ?></td>
+                          <td><?php echo $date ?></td>
+                          <td><?php echo $Imei ?></td>
+                          <td><?php echo $ProductName ?></td>
+                          <td><?php echo $CategoryName ?></td>
+                          <td><?php echo $PurchaseQty ?></td>
+                          <td><?php echo $PurchasePrice ?></td>
+                          <td><?php echo $subPrice; ?></td>
+                          <td><?php echo $SalePrice ?></td>
+                          <td><?php echo $StorageName ?></td>
+                          <td><?php echo $UserName ?></td>
+                          <td><?php echo $SupplierName ?></td>
+                          <td><?php echo $ModelName ?></td>      
                         </tr>
-                       <th scope="row">2</th>
-                          <td>BD-002</td>
-                          <td>15-May-20</td>
-                          <td>0000002</td>
-                          <td>iPhone 11 Pro </td>
-                          <td>Phone</td>
-                          <td>1</td>
-                          <td>1100</td>
-                          <td>1100</td>
-                          <td>1200</td>
-                          <td>32GB</td>
-                          <td>Admin</td>
-                          <td>Dara</td>
-                          <td>Iphone</td>
-                        </tr>
+                        <?php 
+                          }
+                        ?>
+
                         <tr class="table-danger">
                             <td colspan="6">
                                 <center>សរុប</center>
                             </td>
-                            <td>2</td>
+                            <td><?php echo $totalQty; ?></td>
                             <td></td>
-                            <td>2200</td>
-
+                            <td><?php echo $totalPrice; ?></td>
                         </tr>
                       </tbody>
                     </table>
-
-
-
-
-
                 <!-- End Body -->
            
                 
